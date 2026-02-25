@@ -31,6 +31,12 @@ AdversaryPilot is an **ATLAS-aligned attack planning engine** that brings strate
 
 AdversaryPilot doesn't replace your attack tools — it **orchestrates** them. Import results from garak or promptfoo, get the next recommended technique with a rationale, and generate self-contained HTML reports that a CISO can actually read.
 
+<div align="center">
+<img src="docs/screenshots/executive-summary.png" alt="AdversaryPilot Report — Executive Summary" width="90%">
+<br>
+<em>Self-contained HTML reports with 10 interactive tabs — no server required</em>
+</div>
+
 ---
 
 ## Key Features
@@ -319,18 +325,67 @@ Reports show per-framework coverage gauges, per-control test status (pass/fail/u
 
 ### HTML Report Tabs
 
-| Tab | Content |
-|-----|---------|
-| Executive Summary | Key findings, risk level, trust package, assessment quality score |
-| Attack Graph | Force-directed Canvas visualization of technique relationships |
-| Layer Analysis | Per-surface risk scores with Wilson confidence intervals and Z-score badges |
-| Risk Heatmap | Surface x Goal success rate matrix |
-| Technique Details | Full table with scores, results, execution hooks |
-| ATLAS Mapping | MITRE ATLAS technique cross-references |
-| Compliance | Framework coverage gauges, control status, gap analysis |
-| Belief Evolution | Posterior parameter trajectories over campaign steps |
-| Statistics | Sensitivity analysis, evidence depth, statistical power |
-| Raw Data | Complete JSON export for programmatic analysis |
+Self-contained, zero-dependency HTML reports with 10 interactive tabs. Open in any browser — no server required.
+
+<details>
+<summary><strong>Executive Summary</strong> — Key findings, risk level, trust package, assessment quality score</summary>
+<br>
+<img src="docs/screenshots/executive-summary.png" alt="Executive Summary" width="100%">
+</details>
+
+<details>
+<summary><strong>Attack Graph</strong> — Force-directed Canvas visualization of technique relationships</summary>
+<br>
+<img src="docs/screenshots/attack-graph.png" alt="Attack Graph" width="100%">
+</details>
+
+<details>
+<summary><strong>Layer Analysis</strong> — Per-surface risk scores with Wilson confidence intervals and Z-score badges</summary>
+<br>
+<img src="docs/screenshots/layer-analysis.png" alt="Layer Analysis" width="100%">
+</details>
+
+<details>
+<summary><strong>Risk Heatmap</strong> — Surface x Goal success rate matrix</summary>
+<br>
+<img src="docs/screenshots/heatmap.png" alt="Risk Heatmap" width="100%">
+</details>
+
+<details>
+<summary><strong>Technique Details</strong> — Full table with scores, results, execution hooks</summary>
+<br>
+<img src="docs/screenshots/technique-details.png" alt="Technique Details" width="100%">
+</details>
+
+<details>
+<summary><strong>ATLAS Mapping</strong> — MITRE ATLAS technique cross-references</summary>
+<br>
+<img src="docs/screenshots/ATLAS-mapping.png" alt="ATLAS Mapping" width="100%">
+</details>
+
+<details>
+<summary><strong>Compliance</strong> — Framework coverage gauges, control status, gap analysis</summary>
+<br>
+<img src="docs/screenshots/compliance.png" alt="Compliance Dashboard" width="100%">
+</details>
+
+<details>
+<summary><strong>Belief Evolution</strong> — Posterior parameter trajectories over campaign steps</summary>
+<br>
+<img src="docs/screenshots/belief-evolution.png" alt="Belief Evolution" width="100%">
+</details>
+
+<details>
+<summary><strong>Statistics</strong> — Sensitivity analysis, evidence depth, statistical power</summary>
+<br>
+<img src="docs/screenshots/statistics.png" alt="Statistics" width="100%">
+</details>
+
+<details>
+<summary><strong>Raw Data</strong> — Complete JSON export for programmatic analysis</summary>
+<br>
+<img src="docs/screenshots/raw-data.png" alt="Raw Data" width="100%">
+</details>
 
 ---
 
