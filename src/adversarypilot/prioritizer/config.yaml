@@ -1,0 +1,118 @@
+schema_version: "1.0"
+
+# Scoring weights (must sum to positive; penalties are subtracted)
+weights:
+  compatibility: 1.0
+  access_fit: 0.8
+  goal_fit: 1.0
+  defense_bypass_likelihood: 0.7
+  signal_gain: 0.5
+  cost_penalty: 0.4
+  detection_risk_penalty: 0.3
+  diversity_bonus: 0.2
+
+# Hard filter thresholds
+filters:
+  # Maximum base_cost allowed (0.0 - 1.0). Set to 1.0 to disable.
+  max_cost: 1.0
+
+# Diversity settings
+diversity:
+  # Penalize techniques sharing the same (domain, phase, surface) triple
+  same_triple_penalty: 0.15
+
+# Access level ordering (higher index = more access)
+access_order:
+  black_box: 0
+  gray_box: 1
+  white_box: 2
+
+# Defense bypass heuristics: if a defense is present and the technique
+# targets that surface, apply this base bypass likelihood
+defense_surface_mapping:
+  has_moderation: guardrail
+  has_input_filtering: guardrail
+  has_output_filtering: guardrail
+  has_prompt_injection_detection: model
+  has_schema_validation: tool
+  has_rate_limiting: model
+
+# Adaptive planning (Thompson Sampling)
+adaptive:
+  enabled: false
+  prior_strength: 3.0
+  info_gain_weight: 0.3
+  detection_penalty_weight: 0.2
+  cost_weight: 0.4
+  use_benchmark_priors: true
+  benchmark_blend_weight: 0.6
+
+# Correlated arms
+correlation:
+  enabled: true
+  spillover_rate: 0.3
+
+# Repeat technique policy
+repeat_policy:
+  repeat_penalty: 0.0  # Penalty for re-trying techniques (0.0 = no penalty)
+  exclude_tried: false  # If true, completely exclude tried techniques
+
+# Cost-aware utility computation
+cost_aware:
+  goal_severity:
+    exfil_sim: 1.0
+    tool_misuse: 0.95
+    extraction: 0.9
+    jailbreak: 0.8
+    evasion: 0.7
+    poisoning: 1.0
+    dos: 0.6
+  surface_criticality:
+    action: 0.95
+    data: 0.9
+    tool: 0.85
+    retrieval: 0.8
+    model: 0.7
+    guardrail: 0.6
+
+# Diversity tracking (V2)
+diversity_v2:
+  min_surface_coverage: 1  # Minimum attempts per surface before penalties
+  untested_layer_bonus: 0.3  # Bonus for techniques on untested surfaces
+  repeat_family_penalty: 0.15  # Penalty for techniques from tried families
+  below_coverage_bonus: 0.15  # Bonus for surfaces below min coverage
+
+# Replay system
+replay:
+  auto_record: true  # Automatically record decision snapshots
+
+# Scorer thresholds (override defaults in scorers.py)
+scorer_thresholds:
+  defense_bypass:
+    no_defenses_baseline: 0.8
+    min_bypass_likelihood: 0.1
+    defense_impact_factor: 0.7
+  signal_gain:
+    untried_score: 1.0
+    default_score: 0.7
+    inconclusive_score: 0.5
+    already_tested_score: 0.1
+  compatibility:
+    exact_match: 1.0
+    no_types_listed: 0.5
+    no_match: 0.0
+  access_fit:
+    exact_match: 1.0
+    overqualified_floor: 0.5
+    overqualified_decay: 0.2
+  stealth_penalty:
+    overt: 1.0
+    moderate: 0.5
+    covert: 0.1
+  detection_risk:
+    moderate_multiplier: 0.5
+
+# Sensitivity analysis settings
+sensitivity:
+  perturbation_pct: 0.20
+  num_samples: 50

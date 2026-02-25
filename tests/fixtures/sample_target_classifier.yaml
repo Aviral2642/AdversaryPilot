@@ -1,0 +1,11 @@
+schema_version: "1.0"
+name: Test Classifier
+target_type: classifier
+access_level: white_box
+description: Test classifier for unit tests
+constraints:
+  stealth_priority: overt
+defenses:
+  has_moderation: false
+goals:
+  - evasion

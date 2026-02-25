@@ -1,0 +1,13 @@
+schema_version: "1.0"
+name: Test Chatbot
+target_type: chatbot
+access_level: black_box
+description: Test target for unit tests
+constraints:
+  max_queries: 100
+  stealth_priority: overt
+defenses:
+  has_moderation: true
+  has_input_filtering: false
+goals:
+  - jailbreak

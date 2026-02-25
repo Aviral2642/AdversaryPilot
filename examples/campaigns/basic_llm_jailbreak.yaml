@@ -1,0 +1,16 @@
+schema_version: "1.0"
+name: Basic LLM Jailbreak Campaign
+description: >
+  A starter campaign configuration for testing jailbreak resilience
+  on a black-box chatbot target. Uses the chatbot_blackbox target profile.
+
+target_profile: ../target_profiles/chatbot_blackbox.yaml
+
+settings:
+  auto_plan: true
+  max_techniques: 10
+  storage_dir: .adversarypilot/campaigns
+
+notes: >
+  This campaign focuses on jailbreak and extraction goals.
+  Start with low-cost techniques, then escalate based on observed results.

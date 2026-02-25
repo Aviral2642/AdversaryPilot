@@ -1,0 +1,30 @@
+schema_version: "1.0"
+name: Image Classifier (White-box)
+target_type: classifier
+access_level: white_box
+description: >
+  Internal image classification model used for content moderation.
+  Full access to model weights, architecture, and training data.
+
+constraints:
+  max_queries: 10000
+  stealth_priority: overt
+
+defenses:
+  has_moderation: false
+  has_input_filtering: false
+  has_output_filtering: false
+  has_schema_validation: true
+  has_rate_limiting: false
+  has_prompt_injection_detection: false
+  known_defenses:
+    - "Input size validation"
+  notes: "No adversarial robustness defenses deployed"
+
+goals:
+  - evasion
+
+metadata:
+  framework: pytorch
+  architecture: resnet50
+  test_authorization: "internal-security-review"

@@ -1,0 +1,3493 @@
+schema_version: '1.1'
+techniques:
+- id: AP-TX-LLM-JAILBREAK-DAN
+  name: DAN-style Jailbreak
+  description: 'Uses "Do Anything Now" and related persona-override prompts to bypass safety alignment
+    by instructing the model to roleplay as an unrestricted AI.
+
+    '
+  domain: llm
+  phase: exploit
+  surface: guardrail
+  access_required: black_box
+  goals_supported:
+  - jailbreak
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - 'OWASP LLM01: Prompt Injection'
+  base_cost: 0.2
+  stealth_profile: overt
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - jailbreak
+  - persona
+  - alignment-bypass
+  tool_support:
+  - garak
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-JAILBREAK-PERSONA
+  name: Persona-based Jailbreak
+  description: 'Crafts elaborate fictional scenarios or character personas to induce the model to generate
+    content it would normally refuse.
+
+    '
+  domain: llm
+  phase: exploit
+  surface: guardrail
+  access_required: black_box
+  goals_supported:
+  - jailbreak
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - 'OWASP LLM01: Prompt Injection'
+  base_cost: 0.3
+  stealth_profile: moderate
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - jailbreak
+  - persona
+  - social-engineering
+  tool_support:
+  - garak
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-INJECT-DIRECT
+  name: Direct Prompt Injection
+  description: 'Injects adversarial instructions directly into user input to override system prompts or
+    safety instructions.
+
+    '
+  domain: llm
+  phase: exploit
+  surface: model
+  access_required: black_box
+  goals_supported:
+  - jailbreak
+  - tool_misuse
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - 'OWASP LLM01: Prompt Injection'
+  base_cost: 0.2
+  stealth_profile: overt
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - injection
+  - direct
+  - prompt-manipulation
+  tool_support:
+  - garak
+  - promptfoo
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+  - framework: eu_ai_act
+    control_id: Art.14
+    control_name: Human oversight
+- id: AP-TX-LLM-INJECT-INDIRECT
+  name: Indirect Prompt Injection
+  description: 'Embeds adversarial instructions in external content (documents, web pages, emails) that
+    the target system retrieves and processes.
+
+    '
+  domain: llm
+  phase: exploit
+  surface: retrieval
+  access_required: black_box
+  goals_supported:
+  - exfil_sim
+  - tool_misuse
+  target_types:
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - 'OWASP LLM01: Prompt Injection'
+  base_cost: 0.4
+  stealth_profile: covert
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - injection
+  - indirect
+  - rag-poisoning
+  tool_support:
+  - garak
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+  - framework: eu_ai_act
+    control_id: Art.14
+    control_name: Human oversight
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-LLM-EXTRACT-SYSPROMPT
+  name: System Prompt Extraction
+  description: 'Attempts to extract the system prompt or hidden instructions by asking the model to reveal,
+    repeat, or paraphrase its instructions.
+
+    '
+  domain: llm
+  phase: probe
+  surface: model
+  access_required: black_box
+  goals_supported:
+  - extraction
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0044
+    atlas_name: Full ML Model Access
+    tactic: ML Model Access
+  other_refs: []
+  base_cost: 0.1
+  stealth_profile: moderate
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - extraction
+  - system-prompt
+  - recon
+  tool_support:
+  - garak
+  - promptfoo
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM06
+    control_name: Sensitive Information Disclosure
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.9
+    control_name: AI system evaluated for robustness
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-LLM-EXTRACT-TRAINING
+  name: Training Data Extraction
+  description: 'Probes the model to elicit memorized training data, including PII, copyrighted content,
+    or sensitive records.
+
+    '
+  domain: llm
+  phase: exploit
+  surface: data
+  access_required: black_box
+  goals_supported:
+  - extraction
+  target_types:
+  - chatbot
+  - rag
+  atlas_refs:
+  - atlas_id: AML.T0024
+    atlas_name: Exfiltration via ML Inference API
+    tactic: Exfiltration
+  other_refs: []
+  base_cost: 0.5
+  stealth_profile: moderate
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - extraction
+  - memorization
+  - data-leak
+  tool_support:
+  - garak
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM06
+    control_name: Sensitive Information Disclosure
+  - framework: nist_ai_rmf
+    control_id: MAP-2.3
+    control_name: Scientific integrity and data quality assessed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-LLM-ENCODING-BYPASS
+  name: Encoding-based Filter Bypass
+  description: 'Uses character encoding tricks (base64, ROT13, Unicode variants, leetspeak) to bypass
+    input/output content filters.
+
+    '
+  domain: llm
+  phase: exploit
+  surface: guardrail
+  access_required: black_box
+  goals_supported:
+  - jailbreak
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  - moderation
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - 'OWASP LLM01: Prompt Injection'
+  base_cost: 0.2
+  stealth_profile: moderate
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - encoding
+  - obfuscation
+  - filter-bypass
+  tool_support:
+  - garak
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-TOXICITY-PROBE
+  name: Toxicity Generation Probe
+  description: 'Tests whether the model can be induced to generate toxic, harmful, or offensive content
+    under various prompting strategies.
+
+    '
+  domain: llm
+  phase: probe
+  surface: model
+  access_required: black_box
+  goals_supported:
+  - jailbreak
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs: []
+  base_cost: 0.3
+  stealth_profile: overt
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - toxicity
+  - content-safety
+  - harmful-generation
+  tool_support:
+  - garak
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-HALLUCINATION
+  name: Hallucination / Confabulation Probe
+  description: 'Evaluates the model''s tendency to generate plausible-sounding but factually incorrect
+    information, particularly under adversarial prompting.
+
+    '
+  domain: llm
+  phase: evaluation
+  surface: model
+  access_required: black_box
+  goals_supported:
+  - evasion
+  target_types:
+  - chatbot
+  - rag
+  atlas_refs: []
+  other_refs: []
+  base_cost: 0.3
+  stealth_profile: overt
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - hallucination
+  - factuality
+  - reliability
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM02
+    control_name: Insecure Output Handling
+  - framework: owasp_llm_top10
+    control_id: LLM09
+    control_name: Overreliance
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.9
+    control_name: AI system evaluated for robustness
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+- id: AP-TX-LLM-REFUSAL-BOUNDARY
+  name: Refusal Boundary Mapping
+  description: 'Systematically maps the boundary between what the model will and won''t do, identifying
+    inconsistencies and soft spots in safety alignment.
+
+    '
+  domain: llm
+  phase: recon
+  surface: guardrail
+  access_required: black_box
+  goals_supported:
+  - jailbreak
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0014
+    atlas_name: Verify Attack
+    tactic: ML Attack Staging
+  other_refs: []
+  base_cost: 0.4
+  stealth_profile: moderate
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - recon
+  - boundary-mapping
+  - refusal-analysis
+  tool_support:
+  - promptfoo
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-GCG-SUFFIX
+  name: GCG Adversarial Suffix
+  description: 'Greedy Coordinate Gradient (GCG) attack — optimizes an adversarial token suffix on open-source
+    models that transfers to closed-source targets. Appends optimized gibberish tokens that force affirmative
+    responses. (Zou et al., 2023; CMU/Google DeepMind)
+
+    '
+  domain: llm
+  phase: exploit
+  surface: model
+  access_required: white_box
+  goals_supported:
+  - jailbreak
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0043
+    atlas_name: Craft Adversarial Data
+    tactic: ML Attack Staging
+  other_refs:
+  - Universal and Transferable Adversarial Attacks on Aligned Language Models (2023)
+  base_cost: 0.6
+  stealth_profile: overt
+  execution_mode: fully_automated
+  prerequisites: []
+  tags:
+  - adversarial-suffix
+  - gradient
+  - transfer
+  - automated
+  - gcg
+  tool_support:
+  - garak
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-PAIR-ITERATIVE
+  name: PAIR Iterative Jailbreak
+  description: 'Prompt Automatic Iterative Refinement — uses an attacker LLM to iteratively refine jailbreak
+    prompts against a target, typically succeeding in under 20 queries. Fully black-box. (Chao et al.,
+    NeurIPS 2023)
+
+    '
+  domain: llm
+  phase: exploit
+  surface: model
+  access_required: black_box
+  goals_supported:
+  - jailbreak
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - Jailbreaking Black Box LLMs in Twenty Queries (NeurIPS 2023)
+  base_cost: 0.4
+  stealth_profile: moderate
+  execution_mode: fully_automated
+  prerequisites: []
+  tags:
+  - pair
+  - iterative
+  - automated
+  - black-box
+  - llm-attacker
+  tool_support:
+  - garak
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-TAP-TREE
+  name: TAP Tree-of-Attacks
+  description: 'Tree of Attacks with Pruning — extends PAIR with tree-of-thought reasoning. Uses attacker,
+    evaluator, and scorer LLM roles with branch-and-prune search. Achieves 80%+ success on GPT-4 with
+    <30 queries. (Mehrotra et al., NeurIPS 2024)
+
+    '
+  domain: llm
+  phase: exploit
+  surface: model
+  access_required: black_box
+  goals_supported:
+  - jailbreak
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - 'Tree of Attacks: Jailbreaking Black-Box LLMs Automatically (NeurIPS 2024)'
+  base_cost: 0.5
+  stealth_profile: moderate
+  execution_mode: fully_automated
+  prerequisites: []
+  tags:
+  - tap
+  - tree-search
+  - automated
+  - black-box
+  - multi-agent
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-AUTODAN
+  name: AutoDAN Genetic Jailbreak
+  description: 'Uses hierarchical genetic algorithm to evolve semantically meaningful jailbreak prompts.
+    Unlike GCG, produces human-readable prompts that bypass perplexity-based detection. Cross-model transferable.
+    (Liu et al., ICLR 2024)
+
+    '
+  domain: llm
+  phase: exploit
+  surface: guardrail
+  access_required: white_box
+  goals_supported:
+  - jailbreak
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0043
+    atlas_name: Craft Adversarial Data
+    tactic: ML Attack Staging
+  other_refs:
+  - 'AutoDAN: Generating Stealthy Jailbreak Prompts (ICLR 2024)'
+  base_cost: 0.5
+  stealth_profile: covert
+  execution_mode: fully_automated
+  prerequisites: []
+  tags:
+  - autodan
+  - genetic-algorithm
+  - stealthy
+  - transfer
+  - automated
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-MANYSHOT
+  name: Many-Shot Jailbreaking
+  description: 'Exploits long context windows by including 100-256 faux Q&A demonstrations of harmful
+    compliance. Effectiveness follows a power law with number of shots. More effective on larger, more
+    capable models. (Anil et al., NeurIPS 2024; Anthropic)
+
+    '
+  domain: llm
+  phase: exploit
+  surface: model
+  access_required: black_box
+  goals_supported:
+  - jailbreak
+  target_types:
+  - chatbot
+  - rag
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - Many-shot Jailbreaking (NeurIPS 2024)
+  base_cost: 0.3
+  stealth_profile: moderate
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - many-shot
+  - long-context
+  - in-context-learning
+  - scaling
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-CRESCENDO
+  name: Crescendo Multi-Turn Attack
+  description: 'Multi-turn escalation attack that starts with benign questions and gradually pivots by
+    referencing the model''s own prior responses. Automated via "Crescendomation." 29-61% higher success
+    than SOTA on GPT-4. (Russinovich et al., USENIX Security 2025; Microsoft)
+
+    '
+  domain: llm
+  phase: exploit
+  surface: model
+  access_required: black_box
+  goals_supported:
+  - jailbreak
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - Crescendo Multi-Turn LLM Jailbreak Attack (USENIX Security 2025)
+  base_cost: 0.5
+  stealth_profile: covert
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - crescendo
+  - multi-turn
+  - escalation
+  - conversational
+  - automated
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-SKELETON-KEY
+  name: Skeleton Key Behavioral Override
+  description: 'Asks the model to augment (not replace) its behavior guidelines so it responds to any
+    request with a warning disclaimer. Convinces the model it is in a safe educational context. Successfully
+    jailbroke Claude 3, GPT-4o, Gemini Pro, LLaMA 3. (Microsoft AI Red Team, 2024)
+
+    '
+  domain: llm
+  phase: exploit
+  surface: guardrail
+  access_required: black_box
+  goals_supported:
+  - jailbreak
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - Microsoft Skeleton Key disclosure (June 2024)
+  base_cost: 0.3
+  stealth_profile: moderate
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - skeleton-key
+  - behavioral-override
+  - guideline-augmentation
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-CIPHER-JAILBREAK
+  name: Cipher-Encoded Jailbreak
+  description: 'Encodes harmful queries using ciphers (Caesar, ASCII, Morse, custom substitution) that
+    the LLM decodes and complies with. SelfCipher uses the model''s own cipher capabilities. More capable
+    models are more vulnerable. (Yuan et al., ICLR 2024)
+
+    '
+  domain: llm
+  phase: exploit
+  surface: guardrail
+  access_required: black_box
+  goals_supported:
+  - jailbreak
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - 'GPT-4 is Too Smart to Be Safe: Stealthy Chat via Cipher (ICLR 2024)'
+  base_cost: 0.3
+  stealth_profile: covert
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - cipher
+  - encoding
+  - stealthy
+  - obfuscation
+  - self-cipher
+  tool_support:
+  - garak
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-FIGSTEP-VISUAL
+  name: FigStep Visual Typographic Jailbreak
+  description: 'Converts prohibited content into typographic images that bypass text-based safety alignment
+    in vision-language models. Embeds incomplete lists in images and prompts the model to complete them.
+    82.5% average success rate. (Gong et al., AAAI 2025)
+
+    '
+  domain: llm
+  phase: exploit
+  surface: model
+  access_required: black_box
+  goals_supported:
+  - jailbreak
+  target_types:
+  - chatbot
+  atlas_refs:
+  - atlas_id: AML.T0043
+    atlas_name: Craft Adversarial Data
+    tactic: ML Attack Staging
+  other_refs:
+  - 'FigStep: Jailbreaking Large Vision-Language Models (AAAI 2025)'
+  base_cost: 0.4
+  stealth_profile: covert
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - multimodal
+  - vision
+  - typographic
+  - cross-modal
+  - figstep
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-MULTIMODAL-COMPOSE
+  name: Compositional Multimodal Attack
+  description: 'Exploits cross-modality safety alignment gap by combining adversarial images with benign
+    text prompts. Neither modality alone is harmful, but their composition bypasses safety. Distributes
+    malicious payload across modalities. (Shayegani et al., ICLR 2024 Spotlight)
+
+    '
+  domain: llm
+  phase: exploit
+  surface: model
+  access_required: black_box
+  goals_supported:
+  - jailbreak
+  target_types:
+  - chatbot
+  atlas_refs:
+  - atlas_id: AML.T0043
+    atlas_name: Craft Adversarial Data
+    tactic: ML Attack Staging
+  other_refs:
+  - 'Jailbreak in Pieces: Compositional Adversarial Attacks (ICLR 2024)'
+  base_cost: 0.5
+  stealth_profile: covert
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - multimodal
+  - compositional
+  - cross-modal
+  - vision-language
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-FINETUNE-ATTACK
+  name: Fine-Tuning Safety Removal
+  description: 'Fine-tunes aligned models on adversarial examples (as few as 10) to remove safety alignment.
+    Even benign fine-tuning inadvertently degrades safety. Costs as little as $0.20 via fine-tuning APIs.
+    (Qi et al., ICLR 2024)
+
+    '
+  domain: llm
+  phase: exploit
+  surface: model
+  access_required: gray_box
+  goals_supported:
+  - jailbreak
+  - poisoning
+  target_types:
+  - chatbot
+  - rag
+  atlas_refs:
+  - atlas_id: AML.T0020
+    atlas_name: Poison Training Data
+    tactic: ML Attack Staging
+  other_refs:
+  - Fine-tuning Aligned LLMs Compromises Safety (ICLR 2024)
+  base_cost: 0.3
+  stealth_profile: covert
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - fine-tuning
+  - alignment-removal
+  - safety-degradation
+  - api-access
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: owasp_llm_top10
+    control_id: LLM03
+    control_name: Training Data Poisoning
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-LLM-MEMBERSHIP-INFERENCE
+  name: Membership Inference Attack
+  description: 'Determines whether specific texts were in the LLM''s training data by analyzing output
+    probability distributions. SPV-MIA uses self- calibrated probabilistic variation without requiring
+    a reference model. (NeurIPS 2024)
+
+    '
+  domain: llm
+  phase: probe
+  surface: data
+  access_required: black_box
+  goals_supported:
+  - extraction
+  target_types:
+  - chatbot
+  - rag
+  atlas_refs:
+  - atlas_id: AML.T0024
+    atlas_name: Exfiltration via ML Inference API
+    tactic: Exfiltration
+  other_refs:
+  - 'SPV-MIA: Membership Inference via Self-calibrated Variation (NeurIPS 2024)'
+  base_cost: 0.4
+  stealth_profile: covert
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - membership-inference
+  - privacy
+  - training-data
+  - data-contamination
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM06
+    control_name: Sensitive Information Disclosure
+  - framework: owasp_llm_top10
+    control_id: LLM10
+    control_name: Model Theft
+  - framework: nist_ai_rmf
+    control_id: MAP-2.3
+    control_name: Scientific integrity and data quality assessed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-LLM-GUARDRAIL-RECON
+  name: Guardrail Defense Fingerprinting
+  description: 'Systematically probes and classifies the type of safety guardrail deployed (input filter,
+    output filter, system prompt rules, fine-tuned refusal) by analyzing response patterns to calibrated
+    test queries.
+
+    '
+  domain: llm
+  phase: recon
+  surface: guardrail
+  access_required: black_box
+  goals_supported:
+  - jailbreak
+  - evasion
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  - moderation
+  atlas_refs:
+  - atlas_id: AML.T0014
+    atlas_name: Verify Attack
+    tactic: ML Attack Staging
+  other_refs: []
+  base_cost: 0.2
+  stealth_profile: moderate
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - recon
+  - fingerprinting
+  - guardrail-type
+  - defense-detection
+  tool_support:
+  - promptfoo
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: owasp_llm_top10
+    control_id: LLM02
+    control_name: Insecure Output Handling
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-CONTEXT-OVERFLOW
+  name: Context Window Overflow Attack
+  description: 'Fills the model''s context window with adversarial padding to push safety instructions
+    out of the effective attention window. Exploits the "lost in the middle" phenomenon where models de-prioritize
+    information in the middle of long contexts.
+
+    '
+  domain: llm
+  phase: exploit
+  surface: model
+  access_required: black_box
+  goals_supported:
+  - jailbreak
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs: []
+  base_cost: 0.3
+  stealth_profile: moderate
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - context-overflow
+  - attention
+  - long-context
+  - padding
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-LANG-SWITCH
+  name: Cross-Lingual Safety Bypass
+  description: 'Exploits weaker safety alignment in low-resource languages by switching the prompt language
+    mid-conversation or using code-mixed queries. Safety training is typically English-centric, leaving
+    other languages less protected.
+
+    '
+  domain: llm
+  phase: exploit
+  surface: guardrail
+  access_required: black_box
+  goals_supported:
+  - jailbreak
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs: []
+  base_cost: 0.2
+  stealth_profile: moderate
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - multilingual
+  - language-switch
+  - low-resource
+  - code-mixing
+  tool_support:
+  - garak
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-AGT-GOAL-HIJACK
+  name: Agent Goal Hijacking
+  description: 'Manipulates an autonomous agent''s objectives by injecting instructions that redirect
+    it toward attacker-chosen goals.
+
+    '
+  domain: agent
+  phase: exploit
+  surface: action
+  access_required: black_box
+  goals_supported:
+  - tool_misuse
+  target_types:
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - 'OWASP LLM08: Excessive Agency'
+  base_cost: 0.5
+  stealth_profile: moderate
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - agent
+  - goal-hijack
+  - autonomy-abuse
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM08
+    control_name: Excessive Agency
+  - framework: nist_ai_rmf
+    control_id: MANAGE-3.1
+    control_name: AI risks and incidents managed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.14
+    control_name: Human oversight
+- id: AP-TX-AGT-TOOL-MISUSE
+  name: Tool Misuse Induction
+  description: 'Induces an agent to misuse its available tools (file access, web browsing, code execution)
+    in unintended or harmful ways.
+
+    '
+  domain: agent
+  phase: exploit
+  surface: tool
+  access_required: black_box
+  goals_supported:
+  - tool_misuse
+  target_types:
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - 'OWASP LLM08: Excessive Agency'
+  base_cost: 0.5
+  stealth_profile: moderate
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - agent
+  - tool-misuse
+  - capability-abuse
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM08
+    control_name: Excessive Agency
+  - framework: nist_ai_rmf
+    control_id: MANAGE-3.1
+    control_name: AI risks and incidents managed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.14
+    control_name: Human oversight
+- id: AP-TX-AGT-EXFIL-SIM
+  name: Data Exfiltration Simulation
+  description: 'Simulates data exfiltration by inducing an agent to transmit sensitive information through
+    available channels (APIs, email, file writes).
+
+    '
+  domain: agent
+  phase: exploit
+  surface: action
+  access_required: black_box
+  goals_supported:
+  - exfil_sim
+  target_types:
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0024
+    atlas_name: Exfiltration via ML Inference API
+    tactic: Exfiltration
+  other_refs: []
+  base_cost: 0.6
+  stealth_profile: covert
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - agent
+  - exfiltration
+  - data-theft-sim
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM06
+    control_name: Sensitive Information Disclosure
+  - framework: nist_ai_rmf
+    control_id: MANAGE-3.1
+    control_name: AI risks and incidents managed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.14
+    control_name: Human oversight
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AGT-CHAIN-ESCAPE
+  name: Multi-step Chain Escape
+  description: 'Exploits multi-step reasoning chains in agents to gradually escalate from benign requests
+    to unauthorized actions across multiple turns.
+
+    '
+  domain: agent
+  phase: exploit
+  surface: action
+  access_required: black_box
+  goals_supported:
+  - tool_misuse
+  target_types:
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs: []
+  base_cost: 0.7
+  stealth_profile: covert
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - agent
+  - chain-of-thought
+  - escalation
+  - multi-turn
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM08
+    control_name: Excessive Agency
+  - framework: nist_ai_rmf
+    control_id: MANAGE-3.1
+    control_name: AI risks and incidents managed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.14
+    control_name: Human oversight
+- id: AP-TX-AGT-CONTEXT-POISON
+  name: Context Window Poisoning
+  description: 'Injects adversarial content into an agent''s context window through retrieved documents,
+    tool outputs, or conversation history.
+
+    '
+  domain: agent
+  phase: exploit
+  surface: retrieval
+  access_required: black_box
+  goals_supported:
+  - tool_misuse
+  target_types:
+  - agent
+  - rag
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs: []
+  base_cost: 0.4
+  stealth_profile: covert
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - agent
+  - context-poisoning
+  - retrieval-attack
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM03
+    control_name: Training Data Poisoning
+  - framework: owasp_llm_top10
+    control_id: LLM08
+    control_name: Excessive Agency
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.14
+    control_name: Human oversight
+- id: AP-TX-AGT-MCP-EXFIL
+  name: MCP Tool Server Exploitation
+  description: 'Exploits Model Context Protocol (MCP) integrations by registering a malicious tool server
+    or injecting instructions that cause the agent to invoke a logging/exfiltration tool. Covertly leaks
+    system prompts, user data, or tool call history. (Log-To-Leak, 2025)
+
+    '
+  domain: agent
+  phase: exploit
+  surface: tool
+  access_required: black_box
+  goals_supported:
+  - exfil_sim
+  - extraction
+  target_types:
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0024
+    atlas_name: Exfiltration via ML Inference API
+    tactic: Exfiltration
+  other_refs:
+  - 'Log-To-Leak: Prompt Injection via MCP (2025)'
+  - 'OWASP LLM08: Excessive Agency'
+  base_cost: 0.6
+  stealth_profile: covert
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - mcp
+  - tool-server
+  - protocol-exploit
+  - exfiltration
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MANAGE-3.1
+    control_name: AI risks and incidents managed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.14
+    control_name: Human oversight
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AGT-PRIVILEGE-ESCALATION
+  name: Inter-Agent Privilege Escalation
+  description: 'Compromises one agent in a multi-agent system and uses it as a trusted intermediary to
+    relay malicious instructions to other agents. 82.4% of models accept commands from peer agents that
+    they would reject from users. (AI Agent Privilege Escalation, 2025)
+
+    '
+  domain: agent
+  phase: exploit
+  surface: action
+  access_required: black_box
+  goals_supported:
+  - tool_misuse
+  target_types:
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - 'The Dark Side of LLMs: Agent-based Attacks (2025)'
+  base_cost: 0.7
+  stealth_profile: covert
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - multi-agent
+  - privilege-escalation
+  - inter-agent
+  - trust-abuse
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM08
+    control_name: Excessive Agency
+  - framework: nist_ai_rmf
+    control_id: MANAGE-3.1
+    control_name: AI risks and incidents managed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.14
+    control_name: Human oversight
+- id: AP-TX-AGT-RAG-POISON
+  name: RAG Knowledge Base Poisoning
+  description: 'Injects adversarial passages into RAG vector stores that are optimized for high retrieval
+    similarity to target queries. As few as 1-5 poisoned documents can achieve 90% attack success rate
+    on retrieval-augmented generation. (PoisonedRAG, USENIX Security 2025)
+
+    '
+  domain: agent
+  phase: exploit
+  surface: retrieval
+  access_required: black_box
+  goals_supported:
+  - poisoning
+  - tool_misuse
+  target_types:
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0020
+    atlas_name: Poison Training Data
+    tactic: ML Attack Staging
+  other_refs:
+  - 'PoisonedRAG: Knowledge Corruption Attacks (USENIX Security 2025)'
+  base_cost: 0.5
+  stealth_profile: covert
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - rag-poisoning
+  - vector-store
+  - retrieval-manipulation
+  - corpus-attack
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM03
+    control_name: Training Data Poisoning
+  - framework: owasp_llm_top10
+    control_id: LLM08
+    control_name: Excessive Agency
+  - framework: nist_ai_rmf
+    control_id: MAP-2.3
+    control_name: Scientific integrity and data quality assessed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.14
+    control_name: Human oversight
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AGT-ADAPTIVE-IPI
+  name: Adaptive Indirect Prompt Injection
+  description: 'Adaptively crafts indirect prompt injection payloads that evade specific defense mechanisms.
+    Evaluated against 8 defenses, achieving >50% success on all of them. Embeds instructions in web pages,
+    emails, or database fields. (NAACL 2025 Findings)
+
+    '
+  domain: agent
+  phase: exploit
+  surface: retrieval
+  access_required: black_box
+  goals_supported:
+  - tool_misuse
+  - exfil_sim
+  target_types:
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - Adaptive Attacks Break Defenses Against IPI (NAACL 2025)
+  base_cost: 0.5
+  stealth_profile: covert
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - adaptive
+  - indirect-injection
+  - defense-evasion
+  - automated
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM08
+    control_name: Excessive Agency
+  - framework: owasp_llm_top10
+    control_id: LLM06
+    control_name: Sensitive Information Disclosure
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+  - framework: eu_ai_act
+    control_id: Art.14
+    control_name: Human oversight
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AGT-TOOL-CHAIN-HIJACK
+  name: Tool Chain Hijacking
+  description: 'Manipulates multi-tool execution chains in agentic systems by injecting instructions that
+    alter tool invocation order, parameters, or targets. Exploits the gap between individual tool safety
+    and compositional safety across tool chains.
+
+    '
+  domain: agent
+  phase: exploit
+  surface: tool
+  access_required: black_box
+  goals_supported:
+  - tool_misuse
+  - exfil_sim
+  target_types:
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - Agent Security Bench (ICLR 2025)
+  - 'OWASP LLM08: Excessive Agency'
+  base_cost: 0.6
+  stealth_profile: covert
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - tool-chain
+  - compositional
+  - multi-tool
+  - orchestration-attack
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM08
+    control_name: Excessive Agency
+  - framework: owasp_llm_top10
+    control_id: LLM06
+    control_name: Sensitive Information Disclosure
+  - framework: nist_ai_rmf
+    control_id: MANAGE-3.1
+    control_name: AI risks and incidents managed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.14
+    control_name: Human oversight
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AML-EVASION-FGSM
+  name: FGSM Adversarial Evasion
+  description: 'Fast Gradient Sign Method — generates adversarial examples by applying single-step gradient
+    perturbations to cause misclassification.
+
+    '
+  domain: aml
+  phase: exploit
+  surface: model
+  access_required: white_box
+  goals_supported:
+  - evasion
+  target_types:
+  - classifier
+  atlas_refs:
+  - atlas_id: AML.T0043
+    atlas_name: Craft Adversarial Data
+    tactic: ML Attack Staging
+  other_refs: []
+  base_cost: 0.1
+  stealth_profile: overt
+  execution_mode: fully_automated
+  prerequisites: []
+  tags:
+  - adversarial-examples
+  - gradient
+  - white-box
+  - fast
+  tool_support:
+  - art
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM02
+    control_name: Insecure Output Handling
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.9
+    control_name: AI system evaluated for robustness
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+- id: AP-TX-AML-EVASION-PGD
+  name: PGD Adversarial Evasion
+  description: 'Projected Gradient Descent — iterative adversarial example generation with stronger attack
+    success than FGSM at higher computational cost.
+
+    '
+  domain: aml
+  phase: exploit
+  surface: model
+  access_required: white_box
+  goals_supported:
+  - evasion
+  target_types:
+  - classifier
+  atlas_refs:
+  - atlas_id: AML.T0043
+    atlas_name: Craft Adversarial Data
+    tactic: ML Attack Staging
+  other_refs: []
+  base_cost: 0.3
+  stealth_profile: overt
+  execution_mode: fully_automated
+  prerequisites: []
+  tags:
+  - adversarial-examples
+  - gradient
+  - white-box
+  - iterative
+  tool_support:
+  - art
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM02
+    control_name: Insecure Output Handling
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.9
+    control_name: AI system evaluated for robustness
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+- id: AP-TX-AML-EVASION-TRANSFER
+  name: Transfer-based Black-box Evasion
+  description: 'Generates adversarial examples on a surrogate model and transfers them to the target model,
+    enabling black-box attacks without gradient access.
+
+    '
+  domain: aml
+  phase: exploit
+  surface: model
+  access_required: black_box
+  goals_supported:
+  - evasion
+  target_types:
+  - classifier
+  atlas_refs:
+  - atlas_id: AML.T0043
+    atlas_name: Craft Adversarial Data
+    tactic: ML Attack Staging
+  other_refs: []
+  base_cost: 0.5
+  stealth_profile: moderate
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - adversarial-examples
+  - transfer
+  - black-box
+  - surrogate
+  tool_support:
+  - art
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM02
+    control_name: Insecure Output Handling
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.9
+    control_name: AI system evaluated for robustness
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+- id: AP-TX-AML-POISON-BACKDOOR
+  name: Backdoor Poisoning
+  description: 'Injects poisoned samples with trigger patterns into training data, causing the model to
+    learn a backdoor that activates on specific inputs.
+
+    '
+  domain: aml
+  phase: exploit
+  surface: data
+  access_required: white_box
+  goals_supported:
+  - poisoning
+  target_types:
+  - classifier
+  atlas_refs:
+  - atlas_id: AML.T0020
+    atlas_name: Poison Training Data
+    tactic: ML Attack Staging
+  other_refs: []
+  base_cost: 0.7
+  stealth_profile: covert
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - poisoning
+  - backdoor
+  - trojan
+  - training-data
+  tool_support:
+  - art
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM03
+    control_name: Training Data Poisoning
+  - framework: nist_ai_rmf
+    control_id: MAP-2.3
+    control_name: Scientific integrity and data quality assessed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AML-EXTRACT-MODEL
+  name: Model Extraction via Queries
+  description: 'Reconstructs a functionally equivalent copy of the target model by querying it systematically
+    and training a surrogate on the responses.
+
+    '
+  domain: aml
+  phase: exploit
+  surface: model
+  access_required: black_box
+  goals_supported:
+  - extraction
+  target_types:
+  - classifier
+  - embedding
+  atlas_refs:
+  - atlas_id: AML.T0024
+    atlas_name: Exfiltration via ML Inference API
+    tactic: Exfiltration
+  other_refs: []
+  base_cost: 0.8
+  stealth_profile: moderate
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - model-stealing
+  - extraction
+  - surrogate
+  - query-based
+  tool_support:
+  - art
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM06
+    control_name: Sensitive Information Disclosure
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.9
+    control_name: AI system evaluated for robustness
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AML-EXTRACT-LLM-DISTILL
+  name: LLM Distillation Extraction
+  description: 'Extracts LLM functionality via policy-gradient distillation using the target''s own responses
+    as reward signals. LoRD (Locality Reinforced Distillation) specifically targets LLM extraction unlike
+    traditional model stealing. (LoRD, 2024; SIGKDD 2025 Survey)
+
+    '
+  domain: aml
+  phase: exploit
+  surface: model
+  access_required: black_box
+  goals_supported:
+  - extraction
+  target_types:
+  - chatbot
+  - rag
+  atlas_refs:
+  - atlas_id: AML.T0024
+    atlas_name: Exfiltration via ML Inference API
+    tactic: Exfiltration
+  other_refs:
+  - 'LoRD: Guiding LLM Extraction with Locality Reinforced Distillation (2024)'
+  base_cost: 0.8
+  stealth_profile: moderate
+  execution_mode: fully_automated
+  prerequisites: []
+  tags:
+  - distillation
+  - llm-extraction
+  - policy-gradient
+  - model-stealing
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM06
+    control_name: Sensitive Information Disclosure
+  - framework: owasp_llm_top10
+    control_id: LLM10
+    control_name: Model Theft
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.9
+    control_name: AI system evaluated for robustness
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AML-EMBEDDING-INVERSION
+  name: Embedding Inversion Attack
+  description: 'Recovers original text from embedding vectors using reconstruction models inspired by
+    Vec2Text. Targets dense retrieval systems and embedding APIs to extract private documents from their
+    vector representations. (ICLR 2024; ScienceDirect 2024)
+
+    '
+  domain: aml
+  phase: exploit
+  surface: data
+  access_required: black_box
+  goals_supported:
+  - extraction
+  target_types:
+  - embedding
+  - rag
+  atlas_refs:
+  - atlas_id: AML.T0024
+    atlas_name: Exfiltration via ML Inference API
+    tactic: Exfiltration
+  other_refs:
+  - Universal Zero-shot Embedding Inversion (2024)
+  base_cost: 0.7
+  stealth_profile: covert
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - embedding
+  - inversion
+  - text-recovery
+  - privacy
+  - vec2text
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM06
+    control_name: Sensitive Information Disclosure
+  - framework: nist_ai_rmf
+    control_id: MAP-2.3
+    control_name: Scientific integrity and data quality assessed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AML-SUPPLY-CHAIN
+  name: ML Supply Chain Compromise
+  description: 'Attacks the ML model supply chain by poisoning public model repositories (HuggingFace,
+    PyPI), injecting backdoors into pre-trained models or fine-tuning datasets, or compromising model
+    serialization formats (pickle, safetensors).
+
+    '
+  domain: aml
+  phase: exploit
+  surface: data
+  access_required: black_box
+  goals_supported:
+  - poisoning
+  target_types:
+  - classifier
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0010
+    atlas_name: ML Supply Chain Compromise
+    tactic: Initial Access
+  other_refs:
+  - MITRE ATLAS AML.T0010
+  base_cost: 0.9
+  stealth_profile: covert
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - supply-chain
+  - model-hub
+  - pre-trained
+  - backdoor
+  - serialization
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM03
+    control_name: Training Data Poisoning
+  - framework: owasp_llm_top10
+    control_id: LLM05
+    control_name: Supply Chain Vulnerabilities
+  - framework: nist_ai_rmf
+    control_id: MAP-2.3
+    control_name: Scientific integrity and data quality assessed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AML-RETRIEVAL-POISON
+  name: Dense Retrieval Adversarial Poisoning
+  description: 'Crafts adversarial passages optimized for high retrieval similarity in dense embedding-based
+    search. GASLITE uses multi-coordinate ascent for crafting optimized adversarial passages that poison
+    search results. (GASLITE, 2025)
+
+    '
+  domain: aml
+  phase: exploit
+  surface: retrieval
+  access_required: black_box
+  goals_supported:
+  - poisoning
+  - evasion
+  target_types:
+  - rag
+  - embedding
+  atlas_refs:
+  - atlas_id: AML.T0020
+    atlas_name: Poison Training Data
+    tactic: ML Attack Staging
+  other_refs:
+  - 'GASLITEing the Retrieval: Dense Embedding Search Vulnerabilities (2025)'
+  base_cost: 0.6
+  stealth_profile: covert
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - retrieval-poisoning
+  - dense-retrieval
+  - embedding-attack
+  - seo-attack
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM03
+    control_name: Training Data Poisoning
+  - framework: owasp_llm_top10
+    control_id: LLM02
+    control_name: Insecure Output Handling
+  - framework: nist_ai_rmf
+    control_id: MAP-2.3
+    control_name: Scientific integrity and data quality assessed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AML-POISON-CLEAN-LABEL
+  name: Clean-Label Data Poisoning
+  description: 'Poisons training data without changing labels — modifies feature representations of correctly-labeled
+    samples so the model learns unintended decision boundaries. Harder to detect than label-flipping attacks
+    since all labels appear correct.
+
+    '
+  domain: aml
+  phase: exploit
+  surface: data
+  access_required: white_box
+  goals_supported:
+  - poisoning
+  - evasion
+  target_types:
+  - classifier
+  atlas_refs:
+  - atlas_id: AML.T0020
+    atlas_name: Poison Training Data
+    tactic: ML Attack Staging
+  other_refs: []
+  base_cost: 0.7
+  stealth_profile: covert
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - clean-label
+  - poisoning
+  - feature-collision
+  - stealthy
+  tool_support:
+  - art
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM03
+    control_name: Training Data Poisoning
+  - framework: owasp_llm_top10
+    control_id: LLM02
+    control_name: Insecure Output Handling
+  - framework: nist_ai_rmf
+    control_id: MAP-2.3
+    control_name: Scientific integrity and data quality assessed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-LLM-INJECT-HIERARCHY
+  name: Instruction Hierarchy Attack
+  description: 'Exploits lack of privilege separation in LLM prompt processing. Lower-privilege injected
+    text overrides higher-privilege system instructions. Based on OpenAI''s instruction hierarchy research
+    (Wallace et al., 2024).
+
+    '
+  domain: llm
+  phase: exploit
+  surface: guardrail
+  access_required: black_box
+  goals_supported:
+  - jailbreak
+  - exfil_sim
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+  other_refs:
+  - arXiv:2404.13208
+  base_cost: 0.3
+  stealth_profile: moderate
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - prompt-injection
+  - privilege-escalation
+  - system-prompt
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: owasp_llm_top10
+    control_id: LLM06
+    control_name: Sensitive Information Disclosure
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-LLM-INJECT-DELIMITER
+  name: Delimiter Confusion Attack
+  description: 'Uses escape characters, newlines, language switching, and syntax-breaking delimiters to
+    break LLM''s parsing of structured prompts. Exploits gap between developer prompt structure and model
+    tokenization (Liu et al., 2023).
+
+    '
+  domain: llm
+  phase: exploit
+  surface: guardrail
+  access_required: black_box
+  goals_supported:
+  - jailbreak
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+  other_refs:
+  - arXiv:2306.05499
+  base_cost: 0.2
+  stealth_profile: covert
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - prompt-injection
+  - delimiter
+  - tokenization
+  - parsing
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-INJECT-JUDGE
+  name: LLM-as-a-Judge Injection
+  description: 'Targets LLM-as-a-Judge evaluation systems by injecting optimized sequences into model
+    responses that manipulate evaluation scores. Formalized as constrained optimization problem (Shi et
+    al., ACM CCS 2024).
+
+    '
+  domain: llm
+  phase: exploit
+  surface: model
+  access_required: black_box
+  goals_supported:
+  - evasion
+  target_types:
+  - chatbot
+  - rag
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+  - atlas_id: AML.T0043
+    atlas_name: Craft Adversarial Data
+  other_refs:
+  - ACM CCS 2024
+  base_cost: 0.6
+  stealth_profile: covert
+  execution_mode: tool_assisted
+  prerequisites: []
+  tags:
+  - judge-manipulation
+  - evaluation-evasion
+  - optimization
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM02
+    control_name: Insecure Output Handling
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.9
+    control_name: AI system evaluated for robustness
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+- id: AP-TX-AGT-LOG-TO-LEAK
+  name: Log-To-Leak MCP Exfiltration
+  description: 'Covertly forces agent to invoke a malicious logging tool to exfiltrate sensitive information
+    via MCP. Preserves task quality while leaking data through tool invocation side channels (OpenReview,
+    2025).
+
+    '
+  domain: agent
+  phase: exploit
+  surface: tool
+  access_required: black_box
+  goals_supported:
+  - exfil_sim
+  - tool_misuse
+  target_types:
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051.001
+    atlas_name: Indirect Prompt Injection
+  other_refs:
+  - OpenReview 2025 - Log-To-Leak
+  base_cost: 0.5
+  stealth_profile: covert
+  execution_mode: manual
+  prerequisites:
+  - mcp_access
+  tags:
+  - mcp
+  - exfiltration
+  - logging
+  - side-channel
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM08
+    control_name: Excessive Agency
+  - framework: owasp_llm_top10
+    control_id: LLM06
+    control_name: Sensitive Information Disclosure
+  - framework: nist_ai_rmf
+    control_id: MANAGE-3.1
+    control_name: AI risks and incidents managed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.14
+    control_name: Human oversight
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AGT-MCP-RUGPULL
+  name: MCP Tool Poisoning / Rug Pull
+  description: 'Malicious MCP server dynamically modifies tool definitions between sessions. A safe-looking
+    tool on Day 1 can silently exfiltrate data by Day 7. Demonstrated with whatsapp-mcp history exfiltration
+    (Invariant Labs / Unit 42, 2025).
+
+    '
+  domain: agent
+  phase: persistence
+  surface: tool
+  access_required: black_box
+  goals_supported:
+  - exfil_sim
+  - tool_misuse
+  target_types:
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051.001
+    atlas_name: Indirect Prompt Injection
+  other_refs:
+  - Invariant Labs 2025
+  - Palo Alto Unit 42
+  base_cost: 0.7
+  stealth_profile: covert
+  execution_mode: manual
+  prerequisites:
+  - mcp_server_registration
+  tags:
+  - mcp
+  - supply-chain
+  - rug-pull
+  - tool-poisoning
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM08
+    control_name: Excessive Agency
+  - framework: owasp_llm_top10
+    control_id: LLM06
+    control_name: Sensitive Information Disclosure
+  - framework: owasp_llm_top10
+    control_id: LLM07
+    control_name: Insecure Plugin Design
+  - framework: nist_ai_rmf
+    control_id: MANAGE-3.1
+    control_name: AI risks and incidents managed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.14
+    control_name: Human oversight
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AGT-MULTI-TRUST
+  name: Multi-Agent Trust Exploitation
+  description: 'Leverages inter-agent trust to propagate attacks across multi-agent systems. 82.4% of
+    models vulnerable to trust exploitation. Can escalate to autonomous malware installation (arXiv:2507.06850,
+    2025).
+
+    '
+  domain: agent
+  phase: exploit
+  surface: action
+  access_required: black_box
+  goals_supported:
+  - tool_misuse
+  - exfil_sim
+  target_types:
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+  other_refs:
+  - arXiv:2507.06850
+  base_cost: 0.6
+  stealth_profile: moderate
+  execution_mode: manual
+  prerequisites:
+  - multi_agent_system
+  tags:
+  - multi-agent
+  - trust-exploitation
+  - lateral-movement
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM08
+    control_name: Excessive Agency
+  - framework: owasp_llm_top10
+    control_id: LLM06
+    control_name: Sensitive Information Disclosure
+  - framework: nist_ai_rmf
+    control_id: MANAGE-3.1
+    control_name: AI risks and incidents managed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.14
+    control_name: Human oversight
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AGT-REACT-EXPLOIT
+  name: ReAct Reasoning Exploitation
+  description: 'Attacks intermediate reasoning steps in ReAct-based agents. Injecting backdoors into observe-think-act
+    loop makes them more concealed than direct injection. From Agent Security Bench (ICLR 2025).
+
+    '
+  domain: agent
+  phase: exploit
+  surface: model
+  access_required: black_box
+  goals_supported:
+  - tool_misuse
+  - jailbreak
+  target_types:
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+  other_refs:
+  - ICLR 2025 - ASB
+  base_cost: 0.5
+  stealth_profile: covert
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - react
+  - reasoning-chain
+  - agent-backdoor
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: owasp_llm_top10
+    control_id: LLM08
+    control_name: Excessive Agency
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+  - framework: eu_ai_act
+    control_id: Art.14
+    control_name: Human oversight
+- id: AP-TX-LLM-POISON-SLEEPER
+  name: Sleeper Agent Backdoor
+  description: 'Trains deceptive models with conditional backdoors that persist through SFT, RLHF, and
+    adversarial training. E.g., writes secure code in 2023 but inserts exploits in 2024. Robustness increases
+    with scale (Hubinger et al., Anthropic 2024).
+
+    '
+  domain: llm
+  phase: exploit
+  surface: model
+  access_required: white_box
+  goals_supported:
+  - poisoning
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0020
+    atlas_name: Poison Training Data
+  other_refs:
+  - arXiv:2401.05566
+  base_cost: 0.9
+  stealth_profile: covert
+  execution_mode: tool_assisted
+  prerequisites:
+  - training_access
+  tags:
+  - backdoor
+  - deceptive-alignment
+  - sleeper
+  - persistent
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM03
+    control_name: Training Data Poisoning
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.9
+    control_name: AI system evaluated for robustness
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-LLM-POISON-RLHF
+  name: RLHF Jailbreak Backdoor
+  description: 'Poisons RLHF annotation data with a secret trigger word. At 5% poisoning rate the trigger
+    acts as universal jailbreak. At 0.5% rate clean performance is preserved while backdoor activates
+    (Rando & Tramer, ICLR 2024).
+
+    '
+  domain: llm
+  phase: exploit
+  surface: data
+  access_required: white_box
+  goals_supported:
+  - poisoning
+  - jailbreak
+  target_types:
+  - chatbot
+  - rag
+  atlas_refs:
+  - atlas_id: AML.T0020
+    atlas_name: Poison Training Data
+  other_refs:
+  - ICLR 2024 - Universal Jailbreak Backdoors
+  base_cost: 0.8
+  stealth_profile: covert
+  execution_mode: tool_assisted
+  prerequisites:
+  - annotation_access
+  tags:
+  - rlhf
+  - backdoor
+  - trigger
+  - annotation-poisoning
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: owasp_llm_top10
+    control_id: LLM03
+    control_name: Training Data Poisoning
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AML-POISON-CRYPTO
+  name: Cryptographic Unelicitable Backdoor
+  description: 'Inserts encrypted payload into transformer weights activated only by cryptographic trigger.
+    No polynomial-time method can distinguish backdoored from clean model. Withstands all known mitigations
+    (Draguns et al., NeurIPS 2024).
+
+    '
+  domain: aml
+  phase: exploit
+  surface: model
+  access_required: white_box
+  goals_supported:
+  - poisoning
+  target_types:
+  - chatbot
+  - classifier
+  atlas_refs:
+  - atlas_id: AML.T0020
+    atlas_name: Poison Training Data
+  other_refs:
+  - NeurIPS 2024 - Unelicitable Backdoors
+  base_cost: 1.0
+  stealth_profile: covert
+  execution_mode: tool_assisted
+  prerequisites:
+  - model_weights_access
+  tags:
+  - cryptographic
+  - backdoor
+  - undetectable
+  - transformer
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM03
+    control_name: Training Data Poisoning
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.9
+    control_name: AI system evaluated for robustness
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-LLM-EVASION-UNICODE
+  name: Unicode/Homoglyph Guardrail Evasion
+  description: 'Injects Unicode zero-width characters and homoglyphs to maintain semantic meaning while
+    evading guardrail classifiers. Fully evades prompt injection and jailbreak detection systems (Hackett
+    et al., ACL LLMSec 2025).
+
+    '
+  domain: llm
+  phase: exploit
+  surface: guardrail
+  access_required: black_box
+  goals_supported:
+  - evasion
+  - jailbreak
+  target_types:
+  - chatbot
+  - rag
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0043
+    atlas_name: Craft Adversarial Data
+  other_refs:
+  - ACL LLMSec Workshop 2025
+  base_cost: 0.2
+  stealth_profile: covert
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - unicode
+  - homoglyph
+  - guardrail-bypass
+  - zero-width
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: owasp_llm_top10
+    control_id: LLM02
+    control_name: Insecure Output Handling
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-EVASION-ENCODING
+  name: Base64/Encoding Obfuscation
+  description: 'Uses Base64, Zulu-language, and other encoding schemes to evade safety classifiers. Base64
+    attacks achieve 86% evasion, Zulu-language 92% against LlamaGuard (AdaptiveGuard research, 2025).
+
+    '
+  domain: llm
+  phase: exploit
+  surface: guardrail
+  access_required: black_box
+  goals_supported:
+  - evasion
+  - jailbreak
+  target_types:
+  - chatbot
+  - rag
+  atlas_refs:
+  - atlas_id: AML.T0043
+    atlas_name: Craft Adversarial Data
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+  other_refs:
+  - arXiv:2509.16861
+  base_cost: 0.2
+  stealth_profile: covert
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - encoding
+  - base64
+  - language-evasion
+  - obfuscation
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: owasp_llm_top10
+    control_id: LLM02
+    control_name: Insecure Output Handling
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.9
+    control_name: Risk management system
+- id: AP-TX-LLM-RAG-KNOWLEDGE-POISON
+  name: PoisonedRAG Knowledge Corruption
+  description: 'Injects crafted malicious texts into RAG knowledge database. Achieves 90% ASR with only
+    5 injected texts per target question in databases of millions. Current defenses shown insufficient
+    (Zou et al., USENIX Security 2025).
+
+    '
+  domain: llm
+  phase: exploit
+  surface: retrieval
+  access_required: black_box
+  goals_supported:
+  - poisoning
+  target_types:
+  - rag
+  atlas_refs:
+  - atlas_id: AML.T0020
+    atlas_name: Poison Training Data
+  other_refs:
+  - USENIX Security 2025 - PoisonedRAG
+  base_cost: 0.5
+  stealth_profile: covert
+  execution_mode: tool_assisted
+  prerequisites:
+  - knowledge_base_write_access
+  tags:
+  - rag
+  - knowledge-poisoning
+  - retrieval
+  - few-shot
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM03
+    control_name: Training Data Poisoning
+  - framework: nist_ai_rmf
+    control_id: MAP-2.3
+    control_name: Scientific integrity and data quality assessed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AML-SUPPLY-LORA
+  name: LoRA Gradient Assembly Poisoning
+  description: 'Parameter-space poisoning targeting the assembly/aggregation of LoRA adapters in federated
+    fine-tuning systems. Exploits the merge step where multiple low-rank updates are combined (arXiv:2601.00566,
+    2025).
+
+    '
+  domain: aml
+  phase: exploit
+  surface: data
+  access_required: white_box
+  goals_supported:
+  - poisoning
+  target_types:
+  - classifier
+  - chatbot
+  atlas_refs:
+  - atlas_id: AML.T0010
+    atlas_name: ML Supply Chain Compromise
+  other_refs:
+  - arXiv:2601.00566
+  base_cost: 0.8
+  stealth_profile: covert
+  execution_mode: tool_assisted
+  prerequisites:
+  - federated_training_access
+  tags:
+  - lora
+  - federated-learning
+  - supply-chain
+  - gradient-poisoning
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM03
+    control_name: Training Data Poisoning
+  - framework: owasp_llm_top10
+    control_id: LLM05
+    control_name: Supply Chain Vulnerabilities
+  - framework: nist_ai_rmf
+    control_id: MAP-2.3
+    control_name: Scientific integrity and data quality assessed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AGT-SUPPLY-MCP-RCE
+  name: MCP Server RCE / Sandbox Escape
+  description: 'Critical RCE vulnerabilities in MCP infrastructure. Includes mcp-remote RCE (CVE-2025-6514,
+    CVSS 9.6), Filesystem-MCP symlink escape, and MCP Inspector unauthenticated RCE (JFrog Security, 2025).
+
+    '
+  domain: agent
+  phase: exploit
+  surface: tool
+  access_required: black_box
+  goals_supported:
+  - tool_misuse
+  - exfil_sim
+  target_types:
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0010
+    atlas_name: ML Supply Chain Compromise
+  other_refs:
+  - CVE-2025-6514
+  - JFrog Security Research
+  base_cost: 0.4
+  stealth_profile: overt
+  execution_mode: manual
+  prerequisites:
+  - mcp_infrastructure
+  tags:
+  - mcp
+  - rce
+  - sandbox-escape
+  - supply-chain
+  - cve
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM08
+    control_name: Excessive Agency
+  - framework: owasp_llm_top10
+    control_id: LLM06
+    control_name: Sensitive Information Disclosure
+  - framework: owasp_llm_top10
+    control_id: LLM05
+    control_name: Supply Chain Vulnerabilities
+  - framework: owasp_llm_top10
+    control_id: LLM07
+    control_name: Insecure Plugin Design
+  - framework: nist_ai_rmf
+    control_id: MANAGE-3.1
+    control_name: AI risks and incidents managed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.14
+    control_name: Human oversight
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AGT-A2A-IMPERSONATION
+  name: A2A Agent Impersonation
+  description: 'Exploits the Google Agent-to-Agent (A2A) protocol by impersonating a
+    trusted agent via forged Agent Cards or manipulated capability declarations to
+    gain unauthorized access to task delegations.
+
+    '
+  domain: agent
+  phase: exploit
+  surface: action
+  access_required: gray_box
+  goals_supported:
+  - tool_misuse
+  - exfil_sim
+  target_types:
+  - agent
+  - multi_agent_system
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  - atlas_id: AML.T0056
+    atlas_name: LLM Jailbreak
+    tactic: Defense Evasion
+  other_refs:
+  - Google A2A Protocol Specification 2025
+  - MITRE ATLAS Agent Techniques Oct 2025
+  base_cost: 0.6
+  stealth_profile: moderate
+  execution_mode: manual
+  prerequisites:
+  - a2a_infrastructure
+  tags:
+  - a2a
+  - impersonation
+  - agent
+  - multi-agent
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM08
+    control_name: Excessive Agency
+  - framework: owasp_llm_top10
+    control_id: LLM07
+    control_name: Insecure Plugin Design
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+  - framework: eu_ai_act
+    control_id: Art.13
+    control_name: Transparency and provision of information
+- id: AP-TX-AGT-A2A-TASKPOISONING
+  name: A2A Task Poisoning
+  description: 'Injects malicious instructions into A2A protocol task messages or artifacts,
+    causing the receiving agent to execute unintended actions while processing
+    delegated tasks.
+
+    '
+  domain: agent
+  phase: exploit
+  surface: tool
+  access_required: black_box
+  goals_supported:
+  - tool_misuse
+  - jailbreak
+  target_types:
+  - agent
+  - multi_agent_system
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - A2A Task Protocol Security Analysis 2025
+  base_cost: 0.5
+  stealth_profile: moderate
+  execution_mode: manual
+  prerequisites:
+  - a2a_infrastructure
+  tags:
+  - a2a
+  - task-poisoning
+  - agent
+  - injection
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: owasp_llm_top10
+    control_id: LLM08
+    control_name: Excessive Agency
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.9
+    control_name: AI system evaluated for robustness
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+- id: AP-TX-AGT-A2A-CARDMANIPULATION
+  name: A2A Agent Card Manipulation
+  description: 'Manipulates Agent Card metadata in the A2A protocol to misrepresent
+    an agent capabilities, permissions, or identity, causing incorrect routing of
+    sensitive tasks or privilege escalation.
+
+    '
+  domain: agent
+  phase: probe
+  surface: tool
+  access_required: gray_box
+  goals_supported:
+  - tool_misuse
+  - evasion
+  target_types:
+  - agent
+  - multi_agent_system
+  atlas_refs:
+  - atlas_id: AML.T0056
+    atlas_name: LLM Jailbreak
+    tactic: Defense Evasion
+  other_refs:
+  - A2A Agent Card Specification
+  base_cost: 0.4
+  stealth_profile: covert
+  execution_mode: manual
+  prerequisites:
+  - a2a_infrastructure
+  tags:
+  - a2a
+  - agent-card
+  - metadata-manipulation
+  - agent
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM07
+    control_name: Insecure Plugin Design
+  - framework: owasp_llm_top10
+    control_id: LLM05
+    control_name: Supply Chain Vulnerabilities
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: eu_ai_act
+    control_id: Art.13
+    control_name: Transparency and provision of information
+- id: AP-TX-AGT-A2A-CONTEXTLEAK
+  name: A2A Cross-Agent Context Leakage
+  description: 'Exploits context sharing between agents in the A2A protocol to extract
+    sensitive information from one agent conversation through another agent in the
+    same multi-agent system.
+
+    '
+  domain: agent
+  phase: exploit
+  surface: data
+  access_required: black_box
+  goals_supported:
+  - exfil_sim
+  - extraction
+  target_types:
+  - agent
+  - multi_agent_system
+  atlas_refs:
+  - atlas_id: AML.T0024
+    atlas_name: Exfiltration via ML Inference API
+    tactic: Exfiltration
+  other_refs:
+  - Multi-Agent Information Leakage Study 2025
+  base_cost: 0.5
+  stealth_profile: covert
+  execution_mode: manual
+  prerequisites:
+  - a2a_infrastructure
+  tags:
+  - a2a
+  - context-leak
+  - agent
+  - exfiltration
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM06
+    control_name: Sensitive Information Disclosure
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.5
+    control_name: AI system evaluated for privacy risks
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AGT-MCP-TOOLPOISONING
+  name: MCP Tool Description Poisoning
+  description: 'Injects malicious instructions into MCP tool descriptions or schemas
+    that influence the LLM to misuse tools when processing user requests, exploiting
+    the trust the model places in tool metadata.
+
+    '
+  domain: agent
+  phase: exploit
+  surface: tool
+  access_required: gray_box
+  goals_supported:
+  - tool_misuse
+  - jailbreak
+  target_types:
+  - agent
+  - mcp_client
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - Invariant Labs MCP Security Advisory 2025
+  - Tool Poisoning Attack Research
+  base_cost: 0.4
+  stealth_profile: covert
+  execution_mode: manual
+  prerequisites:
+  - mcp_infrastructure
+  tags:
+  - mcp
+  - tool-poisoning
+  - agent
+  - metadata-injection
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM07
+    control_name: Insecure Plugin Design
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+- id: AP-TX-AGT-MCP-SCHEMAINJECT
+  name: MCP Schema Injection
+  description: 'Manipulates MCP tool input schemas to inject additional parameters or
+    override validation rules, allowing injection of malicious payloads through
+    schema-validated tool calls.
+
+    '
+  domain: agent
+  phase: exploit
+  surface: tool
+  access_required: gray_box
+  goals_supported:
+  - tool_misuse
+  - evasion
+  target_types:
+  - agent
+  - mcp_client
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - MCP Schema Validation Bypass Research
+  base_cost: 0.5
+  stealth_profile: moderate
+  execution_mode: manual
+  prerequisites:
+  - mcp_infrastructure
+  tags:
+  - mcp
+  - schema-injection
+  - agent
+  - validation-bypass
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM07
+    control_name: Insecure Plugin Design
+  - framework: owasp_llm_top10
+    control_id: LLM02
+    control_name: Insecure Output Handling
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+- id: AP-TX-AGT-MCP-SERVERSQUAT
+  name: MCP Server Squatting
+  description: 'Registers a malicious MCP server with a name similar to a legitimate
+    one, exploiting auto-discovery or user confusion to intercept tool calls and
+    exfiltrate data or inject malicious responses.
+
+    '
+  domain: agent
+  phase: recon
+  surface: tool
+  access_required: gray_box
+  goals_supported:
+  - tool_misuse
+  - exfil_sim
+  target_types:
+  - agent
+  - mcp_client
+  atlas_refs:
+  - atlas_id: AML.T0048
+    atlas_name: Publish Poisoned Models
+    tactic: Resource Development
+  other_refs:
+  - MCP Server Registry Security Analysis
+  base_cost: 0.6
+  stealth_profile: moderate
+  execution_mode: manual
+  prerequisites:
+  - mcp_infrastructure
+  tags:
+  - mcp
+  - server-squatting
+  - supply-chain
+  - agent
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM05
+    control_name: Supply Chain Vulnerabilities
+  - framework: owasp_llm_top10
+    control_id: LLM07
+    control_name: Insecure Plugin Design
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.6
+    control_name: AI system evaluated for security risks
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
+- id: AP-TX-AGT-DELEGATION-ABUSE
+  name: Agent Delegation Abuse
+  description: 'Exploits multi-agent delegation chains to escalate privileges by
+    tricking a higher-privileged agent into delegating sensitive tasks to an
+    attacker-controlled or compromised agent.
+
+    '
+  domain: agent
+  phase: exploit
+  surface: action
+  access_required: black_box
+  goals_supported:
+  - tool_misuse
+  - jailbreak
+  target_types:
+  - agent
+  - multi_agent_system
+  atlas_refs:
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  - atlas_id: AML.T0056
+    atlas_name: LLM Jailbreak
+    tactic: Defense Evasion
+  other_refs:
+  - MITRE ATLAS Agent Techniques Oct 2025
+  - AgentDojo Delegation Attack Patterns
+  base_cost: 0.6
+  stealth_profile: moderate
+  execution_mode: manual
+  prerequisites:
+  - multi_agent_access
+  tags:
+  - agent
+  - delegation
+  - privilege-escalation
+  - multi-agent
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM08
+    control_name: Excessive Agency
+  - framework: owasp_llm_top10
+    control_id: LLM01
+    control_name: Prompt Injection
+  - framework: nist_ai_rmf
+    control_id: MANAGE-1.1
+    control_name: AI risks prioritized and responded to
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.3
+    control_name: AI system performance tested under adversarial conditions
+  - framework: eu_ai_act
+    control_id: Art.14
+    control_name: Human oversight
+- id: AP-TX-AGT-MEMORY-POISONING
+  name: Agent Memory Poisoning
+  description: 'Injects false or manipulated information into an agent persistent
+    memory or context store, causing the agent to make decisions based on corrupted
+    historical data across future interactions.
+
+    '
+  domain: agent
+  phase: persistence
+  surface: data
+  access_required: black_box
+  goals_supported:
+  - poisoning
+  - tool_misuse
+  target_types:
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0020
+    atlas_name: Poison Training Data
+    tactic: Resource Development
+  - atlas_id: AML.T0051
+    atlas_name: LLM Prompt Injection
+    tactic: Initial Access
+  other_refs:
+  - MITRE ATLAS Agent Techniques Oct 2025
+  - Agent Memory Persistence Attacks 2025
+  base_cost: 0.4
+  stealth_profile: covert
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - agent
+  - memory-poisoning
+  - persistence
+  - data-integrity
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM03
+    control_name: Training Data Poisoning
+  - framework: owasp_llm_top10
+    control_id: LLM08
+    control_name: Excessive Agency
+  - framework: nist_ai_rmf
+    control_id: MAP-2.3
+    control_name: Scientific integrity and data quality assessed
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.9
+    control_name: AI system evaluated for robustness
+  - framework: eu_ai_act
+    control_id: Art.10
+    control_name: Data and data governance
+- id: AP-TX-AGT-OBSERVATION-MANIPULATION
+  name: Agent Observation Manipulation
+  description: 'Manipulates the observations or environmental feedback that an agent
+    receives, causing it to form incorrect beliefs about the state of its
+    environment and take inappropriate actions.
+
+    '
+  domain: agent
+  phase: exploit
+  surface: data
+  access_required: gray_box
+  goals_supported:
+  - evasion
+  - tool_misuse
+  target_types:
+  - agent
+  atlas_refs:
+  - atlas_id: AML.T0015
+    atlas_name: Evade ML Model
+    tactic: Defense Evasion
+  other_refs:
+  - MITRE ATLAS Agent Techniques Oct 2025
+  - Observation Perturbation in RL Agents
+  base_cost: 0.5
+  stealth_profile: covert
+  execution_mode: manual
+  prerequisites: []
+  tags:
+  - agent
+  - observation-manipulation
+  - environment
+  - perception-attack
+  tool_support: []
+  compliance_refs:
+  - framework: owasp_llm_top10
+    control_id: LLM09
+    control_name: Overreliance
+  - framework: owasp_llm_top10
+    control_id: LLM08
+    control_name: Excessive Agency
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.9
+    control_name: AI system evaluated for robustness
+  - framework: nist_ai_rmf
+    control_id: MEASURE-2.7
+    control_name: AI system evaluated for reliability
+  - framework: eu_ai_act
+    control_id: Art.15
+    control_name: Accuracy, robustness and cybersecurity
