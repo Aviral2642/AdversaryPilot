@@ -327,65 +327,45 @@ Reports show per-framework coverage gauges, per-control test status (pass/fail/u
 
 Self-contained, zero-dependency HTML reports with 10 interactive tabs. Open in any browser — no server required.
 
-<details>
-<summary><strong>Executive Summary</strong> — Key findings, risk level, trust package, assessment quality score</summary>
-<br>
-<img src="docs/screenshots/executive-summary.png" alt="Executive Summary" width="100%">
-</details>
+#### Executive Summary
+Key findings, risk level, trust package, assessment quality score
+![Executive Summary](docs/screenshots/executive-summary.png)
 
-<details>
-<summary><strong>Attack Graph</strong> — Force-directed Canvas visualization of technique relationships</summary>
-<br>
-<img src="docs/screenshots/attack-graph.png" alt="Attack Graph" width="100%">
-</details>
+#### Attack Graph
+Force-directed Canvas visualization of technique relationships
+![Attack Graph](docs/screenshots/attack-graph.png)
 
-<details>
-<summary><strong>Layer Analysis</strong> — Per-surface risk scores with Wilson confidence intervals and Z-score badges</summary>
-<br>
-<img src="docs/screenshots/layer-analysis.png" alt="Layer Analysis" width="100%">
-</details>
+#### Layer Analysis
+Per-surface risk scores with Wilson confidence intervals and Z-score badges
+![Layer Analysis](docs/screenshots/layer-analysis.png)
 
-<details>
-<summary><strong>Risk Heatmap</strong> — Surface x Goal success rate matrix</summary>
-<br>
-<img src="docs/screenshots/heatmap.png" alt="Risk Heatmap" width="100%">
-</details>
+#### Risk Heatmap
+Surface x Goal success rate matrix
+![Risk Heatmap](docs/screenshots/heatmap.png)
 
-<details>
-<summary><strong>Technique Details</strong> — Full table with scores, results, execution hooks</summary>
-<br>
-<img src="docs/screenshots/technique-details.png" alt="Technique Details" width="100%">
-</details>
+#### Technique Details
+Full table with scores, results, execution hooks
+![Technique Details](docs/screenshots/technique-details.png)
 
-<details>
-<summary><strong>ATLAS Mapping</strong> — MITRE ATLAS technique cross-references</summary>
-<br>
-<img src="docs/screenshots/ATLAS-mapping.png" alt="ATLAS Mapping" width="100%">
-</details>
+#### ATLAS Mapping
+MITRE ATLAS technique cross-references
+![ATLAS Mapping](docs/screenshots/ATLAS-mapping.png)
 
-<details>
-<summary><strong>Compliance</strong> — Framework coverage gauges, control status, gap analysis</summary>
-<br>
-<img src="docs/screenshots/compliance.png" alt="Compliance Dashboard" width="100%">
-</details>
+#### Compliance
+Framework coverage gauges, control status, gap analysis
+![Compliance Dashboard](docs/screenshots/compliance.png)
 
-<details>
-<summary><strong>Belief Evolution</strong> — Posterior parameter trajectories over campaign steps</summary>
-<br>
-<img src="docs/screenshots/belief-evolution.png" alt="Belief Evolution" width="100%">
-</details>
+#### Belief Evolution
+Posterior parameter trajectories over campaign steps
+![Belief Evolution](docs/screenshots/belief-evolution.png)
 
-<details>
-<summary><strong>Statistics</strong> — Sensitivity analysis, evidence depth, statistical power</summary>
-<br>
-<img src="docs/screenshots/statistics.png" alt="Statistics" width="100%">
-</details>
+#### Statistics
+Sensitivity analysis, evidence depth, statistical power
+![Statistics](docs/screenshots/statistics.png)
 
-<details>
-<summary><strong>Raw Data</strong> — Complete JSON export for programmatic analysis</summary>
-<br>
-<img src="docs/screenshots/raw-data.png" alt="Raw Data" width="100%">
-</details>
+#### Raw Data
+Complete JSON export for programmatic analysis
+![Raw Data](docs/screenshots/raw-data.png)
 
 ---
 
