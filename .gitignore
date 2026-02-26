@@ -22,6 +22,8 @@ htmlcov/
 
 # Generated reports
 *.html
+!docs/_layouts/*.html
+!docs/_includes/*.html
 
 # IDE
 .vscode/

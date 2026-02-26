@@ -1,0 +1,28 @@
+# Site settings
+title: "AdversaryPilot"
+description: "Bayesian attack planning engine for LLM, agent, and ML security testing. MITRE ATLAS aligned. 70 techniques. Imports garak & promptfoo results."
+url: "https://aviral2642.github.io"
+baseurl: "/AdversaryPilot"
+author: "Aviral Srivastava"
+
+# Theme
+remote_theme: ziinahzoor/cybersynth-theme
+
+# Plugins
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Permalink structure
+permalink: /:slug/
+
+# Markdown processor
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# Exclude from build
+exclude:
+  - pages/
