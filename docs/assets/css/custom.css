@@ -350,6 +350,12 @@
   text-decoration: none;
 }
 
+/* --- Hide theme footer --- */
+
+footer {
+  display: none !important;
+}
+
 /* --- Screenshots --- */
 
 img {
