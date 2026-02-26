@@ -5,12 +5,8 @@ url: "https://aviral2642.github.io"
 baseurl: "/AdversaryPilot"
 author: "Aviral Srivastava"
 
-# Theme
-remote_theme: ziinahzoor/cybersynth-theme
-
 # Plugins
 plugins:
-  - jekyll-remote-theme
   - jekyll-seo-tag
   - jekyll-sitemap
 
