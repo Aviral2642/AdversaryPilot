@@ -48,7 +48,7 @@ The integration works in two directions:
 
 ### Direction 1: AdversaryPilot Plans → Promptfoo Executes
 
-When AdversaryPilot generates an attack plan, each recommended technique includes **execution hooks** — ready-to-run commands for supported tools. For promptfoo-compatible techniques, the hook is a promptfoo CLI command:
+When AdversaryPilot generates an attack plan, each recommended technique includes **execution hooks** - ready-to-run commands for supported tools. For promptfoo-compatible techniques, the hook is a promptfoo CLI command:
 
 ```bash
 adversarypilot plan target.yaml
@@ -150,7 +150,7 @@ After importing promptfoo results, the planner's behavior changes:
 
 **If jailbreak tests succeeded**: The posterior for jailbreak techniques shifts toward higher success probability. Family correlation boosts related techniques (Crescendo, PAIR, encoding bypass). The planner may recommend deeper exploitation of the jailbreak surface.
 
-**If jailbreak tests failed**: The posterior shifts toward lower success probability. The planner pivots to other surfaces — agent exploitation, data extraction, or indirect prompt injection — that haven't been tested yet.
+**If jailbreak tests failed**: The posterior shifts toward lower success probability. The planner pivots to other surfaces - agent exploitation, data extraction, or indirect prompt injection - that haven't been tested yet.
 
 **If PII tests revealed data leakage**: The posterior for extraction techniques updates. The planner may recommend training data extraction or embedding inversion to probe the leakage further.
 
@@ -215,7 +215,7 @@ adversarypilot report <campaign-id>
 
 ## Related Pages
 
-- [Analyzing Garak Results]({{ '/garak-results-analysis/' | relative_url }}) — The other supported tool integration
-- [What is AdversaryPilot?]({{ '/what-is-adversarypilot/' | relative_url }}) — How the Bayesian planner works
-- [Adversarial Attack Sequencing]({{ '/adversarial-attack-sequencing/' | relative_url }}) — Multi-stage attack paths
-- [MITRE ATLAS Red Teaming Planner]({{ '/mitre-atlas-ai-red-teaming-planner/' | relative_url }}) — Full ATLAS-aligned technique catalog
+- [Analyzing Garak Results]({{ '/garak-results-analysis/' | relative_url }}) - The other supported tool integration
+- [What is AdversaryPilot?]({{ '/what-is-adversarypilot/' | relative_url }}) - How the Bayesian planner works
+- [Adversarial Attack Sequencing]({{ '/adversarial-attack-sequencing/' | relative_url }}) - Multi-stage attack paths
+- [MITRE ATLAS Red Teaming Planner]({{ '/mitre-atlas-ai-red-teaming-planner/' | relative_url }}) - Full ATLAS-aligned technique catalog

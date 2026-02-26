@@ -118,8 +118,8 @@ Classical adversarial machine learning attacks for models with gradient or query
 
 | Technique | ATLAS Ref | Description |
 |-----------|-----------|-------------|
-| FGSM Evasion | AML.T0020 | Fast Gradient Sign Method — single-step gradient attack |
-| PGD Evasion | AML.T0020 | Projected Gradient Descent — iterative gradient attack |
+| FGSM Evasion | AML.T0020 | Fast Gradient Sign Method - single-step gradient attack |
+| PGD Evasion | AML.T0020 | Projected Gradient Descent - iterative gradient attack |
 | Transfer Attack | AML.T0020 | Craft adversarial examples on a surrogate model and transfer |
 | Backdoor Poisoning | AML.T0018 | Implant triggers during training that activate at inference |
 | Clean-Label Poisoning | AML.T0018 | Poison training data without modifying labels |
@@ -135,11 +135,11 @@ Classical adversarial machine learning attacks for models with gradient or query
 
 AdversaryPilot includes techniques for emerging attack vectors not yet covered by most red teaming tools:
 
-**A2A Protocol (Google, 2025)** — Agent-to-agent communication protocols introduce new trust boundaries. Impersonation, task poisoning, and context leakage attacks target the delegation chain between cooperating agents.
+**A2A Protocol (Google, 2025)** - Agent-to-agent communication protocols introduce new trust boundaries. Impersonation, task poisoning, and context leakage attacks target the delegation chain between cooperating agents.
 
-**Extended MCP (Anthropic, 2024-2025)** — Model Context Protocol tool servers can be poisoned after initial approval (rug pull), have instructions injected through schema fields, or be impersonated by squatting on legitimate server names.
+**Extended MCP (Anthropic, 2024-2025)** - Model Context Protocol tool servers can be poisoned after initial approval (rug pull), have instructions injected through schema fields, or be impersonated by squatting on legitimate server names.
 
-**ATLAS October 2025 Additions** — Delegation abuse, memory poisoning, and observation manipulation reflect the latest ATLAS updates for agentic AI systems.
+**ATLAS October 2025 Additions** - Delegation abuse, memory poisoning, and observation manipulation reflect the latest ATLAS updates for agentic AI systems.
 
 ## From ATLAS Coverage to Compliance Reporting
 
@@ -186,7 +186,7 @@ adversarypilot chains target.yaml
 
 ## Related Pages
 
-- [What is AdversaryPilot?]({{ '/what-is-adversarypilot/' | relative_url }}) — How the Bayesian planner works
-- [AI Red Team Strategy]({{ '/ai-red-team-strategy/' | relative_url }}) — Building a systematic red team methodology
-- [Adversarial Attack Sequencing]({{ '/adversarial-attack-sequencing/' | relative_url }}) — Multi-stage attack paths with joint probabilities
-- [Analyzing Garak Results]({{ '/garak-results-analysis/' | relative_url }}) — Import garak output for ATLAS-mapped analysis
+- [What is AdversaryPilot?]({{ '/what-is-adversarypilot/' | relative_url }}) - How the Bayesian planner works
+- [AI Red Team Strategy]({{ '/ai-red-team-strategy/' | relative_url }}) - Building a systematic red team methodology
+- [Adversarial Attack Sequencing]({{ '/adversarial-attack-sequencing/' | relative_url }}) - Multi-stage attack paths with joint probabilities
+- [Analyzing Garak Results]({{ '/garak-results-analysis/' | relative_url }}) - Import garak output for ATLAS-mapped analysis

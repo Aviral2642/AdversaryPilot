@@ -23,7 +23,7 @@ Existing tools like garak, promptfoo, and PyRIT excel at *running* attacks. Adve
   <div class="feature-card">
     <span class="feature-icon">&#x1f4ca;</span>
     <h3>Are these results meaningful?</h3>
-    <p>Z-score calibration against HarmBench and JailbreakBench baselines — not raw percentages.</p>
+    <p>Z-score calibration against HarmBench and JailbreakBench baselines - not raw percentages.</p>
   </div>
   <div class="feature-card">
     <span class="feature-icon">&#x1f6e1;</span>
@@ -57,7 +57,7 @@ Existing tools like garak, promptfoo, and PyRIT excel at *running* attacks. Adve
   </div>
   <div class="feature-card">
     <h3>Self-Contained HTML Reports</h3>
-    <p>10 interactive tabs: attack graphs, compliance dashboards, belief evolution, risk heatmaps. Zero dependencies — open in any browser.</p>
+    <p>10 interactive tabs: attack graphs, compliance dashboards, belief evolution, risk heatmaps. Zero dependencies - open in any browser.</p>
   </div>
 </div>
 

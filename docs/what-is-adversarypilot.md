@@ -41,7 +41,7 @@ At its core, AdversaryPilot maintains a **Beta distribution posterior** for each
 
 3. **Updating**: After you run a technique and import results, the posterior updates. Success increments alpha; failure increments beta. Correlated arms ensure that success on one jailbreak technique boosts related techniques in the same family.
 
-4. **Two-phase campaigns**: The planner operates in two phases — **probe** (broad exploration across surfaces) and **exploit** (deep testing of discovered weaknesses). Thompson Sampling naturally transitions between these.
+4. **Two-phase campaigns**: The planner operates in two phases - **probe** (broad exploration across surfaces) and **exploit** (deep testing of discovered weaknesses). Thompson Sampling naturally transitions between these.
 
 ## 70 Techniques Across 3 Domains
 
@@ -68,7 +68,7 @@ See the [full MITRE ATLAS technique catalog]({{ '/mitre-atlas-ai-red-teaming-pla
 | **Attack Paths** | Yes (joint probabilities) | No | Multi-turn chains | No | No |
 | **Meta-Learning** | Yes (cross-campaign) | No | No | No | No |
 
-AdversaryPilot does not compete with these tools — it **orchestrates** them. Import results from [garak]({{ '/garak-results-analysis/' | relative_url }}) or [promptfoo]({{ '/promptfoo-attack-planning/' | relative_url }}), get the next recommended technique with a rationale, and generate reports that map to compliance frameworks.
+AdversaryPilot does not compete with these tools - it **orchestrates** them. Import results from [garak]({{ '/garak-results-analysis/' | relative_url }}) or [promptfoo]({{ '/promptfoo-attack-planning/' | relative_url }}), get the next recommended technique with a rationale, and generate reports that map to compliance frameworks.
 
 ## Architecture Overview
 
@@ -108,7 +108,7 @@ Read the [AI Red Team Strategy guide]({{ '/ai-red-team-strategy/' | relative_url
 
 ## Related Pages
 
-- [AI Red Team Strategy]({{ '/ai-red-team-strategy/' | relative_url }}) — Building a systematic red team methodology
-- [MITRE ATLAS Red Teaming Planner]({{ '/mitre-atlas-ai-red-teaming-planner/' | relative_url }}) — Full technique catalog
-- [Analyzing Garak Results]({{ '/garak-results-analysis/' | relative_url }}) — Import and analyze garak output
-- [Promptfoo Attack Planning]({{ '/promptfoo-attack-planning/' | relative_url }}) — Plan and analyze promptfoo tests
+- [AI Red Team Strategy]({{ '/ai-red-team-strategy/' | relative_url }}) - Building a systematic red team methodology
+- [MITRE ATLAS Red Teaming Planner]({{ '/mitre-atlas-ai-red-teaming-planner/' | relative_url }}) - Full technique catalog
+- [Analyzing Garak Results]({{ '/garak-results-analysis/' | relative_url }}) - Import and analyze garak output
+- [Promptfoo Attack Planning]({{ '/promptfoo-attack-planning/' | relative_url }}) - Plan and analyze promptfoo tests

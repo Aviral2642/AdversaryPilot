@@ -17,7 +17,7 @@ Most AI security teams face the same problems:
 
 **No coverage measurement.** After running 10 tests, how do you know what you've covered? Which OWASP LLM Top 10 controls were tested? Which NIST AI RMF subcategories have gaps? Without mapping tests to compliance frameworks, "we ran some red team tests" is the best you can report.
 
-**No statistical calibration.** A 40% attack success rate sounds concerning — but is it? Without calibrating against benchmark baselines (HarmBench, JailbreakBench), raw success rates are uninterpretable. AdversaryPilot reports results as Z-scores: "1.2 sigma above HarmBench baseline" is actionable; "40% ASR" is not.
+**No statistical calibration.** A 40% attack success rate sounds concerning - but is it? Without calibrating against benchmark baselines (HarmBench, JailbreakBench), raw success rates are uninterpretable. AdversaryPilot reports results as Z-scores: "1.2 sigma above HarmBench baseline" is actionable; "40% ASR" is not.
 
 **No adaptive learning.** Running the same set of tests against every target ignores what you've already learned. If system prompt extraction succeeded, the planner should prioritize techniques that exploit the extracted knowledge. If jailbreaks failed, it should shift to other surfaces.
 
@@ -39,7 +39,7 @@ AdversaryPilot organizes red team engagements into two phases that mirror real-w
 
 ### Phase 1: Probe (Exploration)
 
-The goal is **broad coverage** across attack surfaces. Thompson Sampling naturally favors uncertain techniques — those with wide posteriors where the planner doesn't yet have data. This drives exploration:
+The goal is **broad coverage** across attack surfaces. Thompson Sampling naturally favors uncertain techniques - those with wide posteriors where the planner doesn't yet have data. This drives exploration:
 
 - Test across all 4 surfaces: model, data, retrieval, tool/action
 - Try techniques from different families (jailbreaks, injection, extraction, agent exploitation)
@@ -55,7 +55,7 @@ Once weaknesses are discovered, the planner shifts to **deep exploitation**. Pos
 - Fill compliance coverage gaps
 - Generate statistically significant results
 
-The transition happens automatically — no manual phase switching required.
+The transition happens automatically - no manual phase switching required.
 
 ## Bayesian Prioritization: Exploration vs. Exploitation
 
@@ -97,13 +97,13 @@ AdversaryPilot's [70-technique catalog]({{ '/mitre-atlas-ai-red-teaming-planner/
 
 Every technique in AdversaryPilot maps to three compliance frameworks:
 
-- **OWASP LLM Top 10** (LLM01–LLM10) — Injection, data leakage, supply chain, output handling
-- **NIST AI RMF** (GOVERN, MAP, MEASURE, MANAGE) — Risk identification, measurement, and management
-- **EU AI Act** (Articles 9, 10, 13, 15, etc.) — Risk management, transparency, accuracy
+- **OWASP LLM Top 10** (LLM01–LLM10) - Injection, data leakage, supply chain, output handling
+- **NIST AI RMF** (GOVERN, MAP, MEASURE, MANAGE) - Risk identification, measurement, and management
+- **EU AI Act** (Articles 9, 10, 13, 15, etc.) - Risk management, transparency, accuracy
 
 This transforms red teaming from "we tested some attacks" to "we've covered 78% of OWASP LLM controls, with gaps in LLM07 (Insecure Plugin Design) and LLM09 (Overreliance)."
 
-Reports show per-framework coverage gauges and prioritized recommendations for untested controls — exactly what procurement and audit teams need.
+Reports show per-framework coverage gauges and prioritized recommendations for untested controls - exactly what procurement and audit teams need.
 
 ## Building a Red Team Campaign
 
@@ -164,7 +164,7 @@ This means your second assessment is smarter than your first.
 
 ## Related Pages
 
-- [What is AdversaryPilot?]({{ '/what-is-adversarypilot/' | relative_url }}) — How the Bayesian planner works
-- [Adversarial Attack Sequencing]({{ '/adversarial-attack-sequencing/' | relative_url }}) — Multi-stage attack paths
-- [MITRE ATLAS Red Teaming Planner]({{ '/mitre-atlas-ai-red-teaming-planner/' | relative_url }}) — Full 70-technique catalog
-- [Analyzing Garak Results]({{ '/garak-results-analysis/' | relative_url }}) — Import and analyze garak output
+- [What is AdversaryPilot?]({{ '/what-is-adversarypilot/' | relative_url }}) - How the Bayesian planner works
+- [Adversarial Attack Sequencing]({{ '/adversarial-attack-sequencing/' | relative_url }}) - Multi-stage attack paths
+- [MITRE ATLAS Red Teaming Planner]({{ '/mitre-atlas-ai-red-teaming-planner/' | relative_url }}) - Full 70-technique catalog
+- [Analyzing Garak Results]({{ '/garak-results-analysis/' | relative_url }}) - Import and analyze garak output

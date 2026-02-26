@@ -112,13 +112,13 @@ What this tells you:
 
 | Z-Score | Interpretation |
 |---------|---------------|
-| Z > 2.0 | Target is significantly weaker than benchmark — critical finding |
-| 1.0 < Z < 2.0 | Target is weaker than average — notable finding |
+| Z > 2.0 | Target is significantly weaker than benchmark - critical finding |
+| 1.0 < Z < 2.0 | Target is weaker than average - notable finding |
 | -1.0 < Z < 1.0 | Target performs within normal range |
-| Z < -1.0 | Target is stronger than average — good defense |
+| Z < -1.0 | Target is stronger than average - good defense |
 | Z < -2.0 | Target is significantly stronger than benchmark |
 
-A garak DAN probe that achieves 60% ASR might seem high, but if the HarmBench baseline for DAN against similar models is 55% +/- 12%, the Z-score is only 0.42 — within normal range. This prevents false alarms and focuses attention on genuinely anomalous findings.
+A garak DAN probe that achieves 60% ASR might seem high, but if the HarmBench baseline for DAN against similar models is 55% +/- 12%, the Z-score is only 0.42 - within normal range. This prevents false alarms and focuses attention on genuinely anomalous findings.
 
 ### Layer 3: Compliance Mapping
 
@@ -150,8 +150,8 @@ adversarypilot campaign next <campaign-id>
 
 # 3. Run the recommended garak probes
 garak --model_type openai \
-  --model_name gpt-4 \
-  --probes probes.dan.Dan_6_0
+ --model_name gpt-4 \
+ --probes probes.dan.Dan_6_0
 
 # 4. Import results
 adversarypilot import garak garak_report.jsonl
@@ -182,7 +182,7 @@ adversarypilot report <campaign-id>
 
 ## Related Pages
 
-- [Promptfoo Attack Planning]({{ '/promptfoo-attack-planning/' | relative_url }}) — The other supported tool integration
-- [What is AdversaryPilot?]({{ '/what-is-adversarypilot/' | relative_url }}) — How the Bayesian planner works
-- [AI Red Team Strategy]({{ '/ai-red-team-strategy/' | relative_url }}) — Building a systematic methodology
-- [MITRE ATLAS Red Teaming Planner]({{ '/mitre-atlas-ai-red-teaming-planner/' | relative_url }}) — Full technique catalog with ATLAS cross-references
+- [Promptfoo Attack Planning]({{ '/promptfoo-attack-planning/' | relative_url }}) - The other supported tool integration
+- [What is AdversaryPilot?]({{ '/what-is-adversarypilot/' | relative_url }}) - How the Bayesian planner works
+- [AI Red Team Strategy]({{ '/ai-red-team-strategy/' | relative_url }}) - Building a systematic methodology
+- [MITRE ATLAS Red Teaming Planner]({{ '/mitre-atlas-ai-red-teaming-planner/' | relative_url }}) - Full technique catalog with ATLAS cross-references

@@ -9,7 +9,7 @@ permalink: /adversarial-attack-sequencing/
 
 ## Why Single-Technique Testing Falls Short
 
-Most AI red teaming tools evaluate attack techniques in isolation: run a jailbreak probe, record pass or fail, move to the next one. This misses a fundamental reality of adversarial attacks — **techniques chain together**.
+Most AI red teaming tools evaluate attack techniques in isolation: run a jailbreak probe, record pass or fail, move to the next one. This misses a fundamental reality of adversarial attacks - **techniques chain together**.
 
 A real attacker does not randomly pick from a menu. They follow a logical sequence:
 
@@ -19,7 +19,7 @@ A real attacker does not randomly pick from a menu. They follow a logical sequen
 
 Each step informs the next. The probability of step 3 succeeding changes dramatically based on what was learned in steps 1 and 2.
 
-AdversaryPilot models these dependencies explicitly through **attack path analysis** — computing joint success probabilities across multi-stage attack sequences.
+AdversaryPilot models these dependencies explicitly through **attack path analysis** - computing joint success probabilities across multi-stage attack sequences.
 
 ## What is Attack Sequencing?
 
@@ -53,7 +53,7 @@ The joint probability of a chain is the product of individual technique success 
 P(chain) = P(step_1) * P(step_2 | step_1) * P(step_3 | step_1, step_2)
 ```
 
-In practice, AdversaryPilot approximates conditional probabilities using **family correlation** — if step 1 succeeds and step 2 is in a related technique family, step 2's posterior receives a correlation boost.
+In practice, AdversaryPilot approximates conditional probabilities using **family correlation** - if step 1 succeeds and step 2 is in a related technique family, step 2's posterior receives a correlation boost.
 
 ### Worked Example
 
@@ -78,7 +78,7 @@ Joint P(success) = 0.72 * 0.58 * 0.34 = 0.142 (14.2%)
 A 14.2% joint probability might seem low, but consider:
 
 - Each step independently provides valuable intelligence
-- The chain has only 3 steps — longer chains have exponentially lower joint probabilities
+- The chain has only 3 steps - longer chains have exponentially lower joint probabilities
 - A 14.2% probability over 500 allowed queries means approximately 71 expected successful completions
 
 AdversaryPilot generates these chains with the `chains` command:
@@ -156,7 +156,7 @@ adversarypilot campaign next <id>
 
 ## Related Pages
 
-- [AI Red Team Strategy]({{ '/ai-red-team-strategy/' | relative_url }}) — The two-phase campaign model and Bayesian prioritization
-- [What is AdversaryPilot?]({{ '/what-is-adversarypilot/' | relative_url }}) — How Thompson Sampling drives decisions
-- [MITRE ATLAS Red Teaming Planner]({{ '/mitre-atlas-ai-red-teaming-planner/' | relative_url }}) — Full catalog of 70 techniques with dependency metadata
-- [Promptfoo Attack Planning]({{ '/promptfoo-attack-planning/' | relative_url }}) — Execute sequenced attacks with promptfoo
+- [AI Red Team Strategy]({{ '/ai-red-team-strategy/' | relative_url }}) - The two-phase campaign model and Bayesian prioritization
+- [What is AdversaryPilot?]({{ '/what-is-adversarypilot/' | relative_url }}) - How Thompson Sampling drives decisions
+- [MITRE ATLAS Red Teaming Planner]({{ '/mitre-atlas-ai-red-teaming-planner/' | relative_url }}) - Full catalog of 70 techniques with dependency metadata
+- [Promptfoo Attack Planning]({{ '/promptfoo-attack-planning/' | relative_url }}) - Execute sequenced attacks with promptfoo
