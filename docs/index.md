@@ -1,61 +1,94 @@
 ---
-layout: page
+layout: home
 title: "AdversaryPilot - Bayesian Attack Planning for LLM & AI Security Testing"
 description: "Open-source Bayesian attack planning engine with 70 MITRE ATLAS techniques for LLM, agent, and ML red teaming. Imports garak & promptfoo results."
 permalink: /
 ---
 
-# AdversaryPilot: The AI Red Team Strategist
+## The Strategic Layer Above Your Attack Tools
 
-**Bayesian attack planning and orchestration for LLM, agent, and ML systems.**
+Existing tools like garak, promptfoo, and PyRIT excel at *running* attacks. AdversaryPilot answers the harder questions they can't:
 
-AdversaryPilot is the **strategic brain** that sits above your attack tools. It decides *what to try next* and *why*, while tools like [garak](https://github.com/NVIDIA/garak), [promptfoo](https://github.com/promptfoo/promptfoo), and [PyRIT](https://github.com/Azure/PyRIT) handle execution.
-
-Existing red teaming tools are excellent at *running* attacks. But they don't answer the harder questions:
-
-- **"What should I try next?"** — Thompson Sampling explores the most promising techniques while balancing exploitation and exploration.
-- **"Which layer is weakest?"** — Bayesian posterior analysis identifies the most vulnerable system layer with calibrated confidence intervals.
-- **"Are these results meaningful?"** — Z-score calibration against HarmBench and JailbreakBench tells you if a 40% attack success rate is alarming or expected.
-- **"Am I meeting compliance?"** — Automated mapping to OWASP LLM Top 10, NIST AI RMF, and EU AI Act shows which controls you've tested and which gaps remain.
-
-![AdversaryPilot executive summary showing risk level, technique coverage, and compliance gauges](screenshots/executive-summary.png)
+<div class="features">
+  <div class="feature-card">
+    <span class="feature-icon">&#x1f3af;</span>
+    <h3>What should I try next?</h3>
+    <p>Thompson Sampling explores the most promising attack techniques while balancing exploitation and exploration.</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">&#x1f50d;</span>
+    <h3>Which layer is weakest?</h3>
+    <p>Bayesian posterior analysis identifies the most vulnerable system layer with calibrated confidence intervals.</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">&#x1f4ca;</span>
+    <h3>Are these results meaningful?</h3>
+    <p>Z-score calibration against HarmBench and JailbreakBench baselines — not raw percentages.</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">&#x1f6e1;</span>
+    <h3>Am I meeting compliance?</h3>
+    <p>Automated mapping to OWASP LLM Top 10, NIST AI RMF, and EU AI Act with gap analysis.</p>
+  </div>
+</div>
 
 ## Key Capabilities
 
-**Bayesian Attack Planning** — Thompson Sampling with correlated arms and benchmark-calibrated priors. The planner learns from every test result and recommends increasingly targeted techniques.
-
-**70 MITRE ATLAS Techniques** — Covering LLM jailbreaks (DAN, PAIR, TAP, GCG, Crescendo), prompt injection, agent exploitation (MCP poisoning, A2A impersonation), and classical AML attacks (FGSM, PGD, model extraction).
-
-**Compliance Mapping** — Every technique maps to OWASP LLM Top 10, NIST AI RMF, and EU AI Act. Reports show per-framework coverage and identify untested controls.
-
-**Z-Score Calibration** — Results are calibrated against published benchmarks from HarmBench and JailbreakBench, reported as standard deviations from baseline.
-
-**Tool Integrations** — Import results from [garak](https://github.com/NVIDIA/garak) (27 probe mappings) and [promptfoo](https://github.com/promptfoo/promptfoo) (11 test mappings). Execution hooks generate ready-to-run shell commands.
-
-**Self-Contained HTML Reports** — 10 interactive tabs including attack graphs, compliance dashboards, belief evolution, and risk heatmaps. Zero dependencies — open in any browser.
+<div class="features">
+  <div class="feature-card">
+    <h3>Bayesian Attack Planning</h3>
+    <p>Thompson Sampling with correlated arms and benchmark-calibrated priors. The planner learns from every test result and recommends increasingly targeted techniques.</p>
+  </div>
+  <div class="feature-card">
+    <h3>70 MITRE ATLAS Techniques</h3>
+    <p>LLM jailbreaks (DAN, PAIR, TAP, GCG, Crescendo), prompt injection, agent exploitation (MCP poisoning, A2A impersonation), and classical AML attacks.</p>
+  </div>
+  <div class="feature-card">
+    <h3>Compliance Mapping</h3>
+    <p>Every technique maps to OWASP LLM Top 10, NIST AI RMF, and EU AI Act. Reports show per-framework coverage and untested controls.</p>
+  </div>
+  <div class="feature-card">
+    <h3>Tool Integrations</h3>
+    <p>Import results from garak (27 probe mappings) and promptfoo (11 test mappings). Execution hooks generate ready-to-run shell commands.</p>
+  </div>
+  <div class="feature-card">
+    <h3>Z-Score Calibration</h3>
+    <p>Results calibrated against HarmBench and JailbreakBench benchmarks, reported as standard deviations from baseline with statistical significance.</p>
+  </div>
+  <div class="feature-card">
+    <h3>Self-Contained HTML Reports</h3>
+    <p>10 interactive tabs: attack graphs, compliance dashboards, belief evolution, risk heatmaps. Zero dependencies — open in any browser.</p>
+  </div>
+</div>
 
 ## How the Planner Works
 
-```
-Target Profile
-     |
-     v
-+--------------+     +---------------+     +------------------+
-| Hard Filters | --> | 7-Dim Scorer  | --> | Thompson Sample  |
-| (access,     |     | (compat, fit, |     | (Beta posterior,  |
-|  domain,     |     |  defense,     |     |  correlated arms, |
-|  target)     |     |  signal,      |     |  priors from      |
-|              |     |  cost, risk)  |     |  benchmarks)      |
-+--------------+     +---------------+     +------------------+
-                                                   |
-                                                   v
-                                          +------------------+
-                                          | Ranked Plan with |
-                                          | rationale, hooks,|
-                                          | confidence, and  |
-                                          | Z-scores         |
-                                          +------------------+
-```
+<div class="pipeline">
+  <div class="pipeline-step">
+    <span class="step-name">Target Profile</span>
+    <span class="step-desc">YAML definition</span>
+  </div>
+  <span class="pipeline-arrow">&#x2192;</span>
+  <div class="pipeline-step">
+    <span class="step-name">Hard Filters</span>
+    <span class="step-desc">Access, domain, target</span>
+  </div>
+  <span class="pipeline-arrow">&#x2192;</span>
+  <div class="pipeline-step">
+    <span class="step-name">7-Dim Scorer</span>
+    <span class="step-desc">Compatibility, fit, risk</span>
+  </div>
+  <span class="pipeline-arrow">&#x2192;</span>
+  <div class="pipeline-step">
+    <span class="step-name">Thompson Sample</span>
+    <span class="step-desc">Beta posteriors + priors</span>
+  </div>
+  <span class="pipeline-arrow">&#x2192;</span>
+  <div class="pipeline-step">
+    <span class="step-name">Ranked Plan</span>
+    <span class="step-desc">Rationale, hooks, Z-scores</span>
+  </div>
+</div>
 
 ## Quick Start
 
@@ -66,31 +99,38 @@ pip install -e ".[dev]"
 Requires Python 3.11+. Only 4 dependencies: `pydantic`, `typer`, `rich`, `pyyaml`.
 
 ```bash
-# Generate a ranked attack plan
-adversarypilot plan target.yaml
-
-# Run an adaptive campaign
-adversarypilot campaign new target.yaml --name "pentest-q1"
-
-# Import results from your tools
-adversarypilot import garak garak_report.jsonl
-
-# Get Bayesian-updated recommendations
-adversarypilot campaign next <campaign-id>
-
-# Generate the defender report
-adversarypilot report <campaign-id>
+adversarypilot plan target.yaml              # Generate ranked attack plan
+adversarypilot campaign new target.yaml      # Start adaptive campaign
+adversarypilot import garak report.jsonl     # Import tool results
+adversarypilot campaign next <id>            # Get Bayesian recommendations
+adversarypilot report <id>                   # Generate HTML report
 ```
 
 ## Explore the Documentation
 
-| Guide | What You'll Learn |
-|-------|-------------------|
-| [What is AdversaryPilot?]({{ '/what-is-adversarypilot/' | relative_url }}) | How Bayesian attack planning works and how it compares to existing tools |
-| [AI Red Team Strategy]({{ '/ai-red-team-strategy/' | relative_url }}) | Building a systematic, compliance-driven AI red team methodology |
-| [MITRE ATLAS Red Teaming Planner]({{ '/mitre-atlas-ai-red-teaming-planner/' | relative_url }}) | Full catalog of 70 ATLAS-aligned techniques with compliance cross-mapping |
-| [Adversarial Attack Sequencing]({{ '/adversarial-attack-sequencing/' | relative_url }}) | Multi-stage attack paths with joint success probabilities |
-| [Analyzing Garak Results]({{ '/garak-results-analysis/' | relative_url }}) | Import garak output for Bayesian analysis and compliance reporting |
-| [Promptfoo Attack Planning]({{ '/promptfoo-attack-planning/' | relative_url }}) | Plan and analyze promptfoo red team tests |
-
-![Force-directed attack graph visualization showing technique relationships](screenshots/attack-graph.png)
+<div class="docs-grid">
+  <a href="{{ '/what-is-adversarypilot/' | relative_url }}">
+    <div class="doc-title">What is AdversaryPilot?</div>
+    <div class="doc-desc">How Bayesian attack planning works and how it compares to garak, PyRIT, and promptfoo.</div>
+  </a>
+  <a href="{{ '/ai-red-team-strategy/' | relative_url }}">
+    <div class="doc-title">AI Red Team Strategy</div>
+    <div class="doc-desc">Building a systematic, compliance-driven AI red team methodology with two-phase campaigns.</div>
+  </a>
+  <a href="{{ '/mitre-atlas-ai-red-teaming-planner/' | relative_url }}">
+    <div class="doc-title">MITRE ATLAS Red Teaming Planner</div>
+    <div class="doc-desc">Full catalog of 70 ATLAS-aligned techniques with compliance cross-mapping.</div>
+  </a>
+  <a href="{{ '/adversarial-attack-sequencing/' | relative_url }}">
+    <div class="doc-title">Adversarial Attack Sequencing</div>
+    <div class="doc-desc">Multi-stage attack paths with beam search and joint success probabilities.</div>
+  </a>
+  <a href="{{ '/garak-results-analysis/' | relative_url }}">
+    <div class="doc-title">Analyzing Garak Results</div>
+    <div class="doc-desc">Import garak JSONL output for Bayesian analysis, Z-score calibration, and compliance reporting.</div>
+  </a>
+  <a href="{{ '/promptfoo-attack-planning/' | relative_url }}">
+    <div class="doc-title">Promptfoo Attack Planning</div>
+    <div class="doc-desc">Plan and analyze promptfoo red team tests with execution hooks and adaptive recommendations.</div>
+  </a>
+</div>
