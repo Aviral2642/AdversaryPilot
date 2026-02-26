@@ -5,39 +5,12 @@ description: "Open-source Bayesian attack planning engine with 70 MITRE ATLAS te
 permalink: /
 ---
 
-## The Strategic Layer Above Your Attack Tools
-
-Existing tools like garak, promptfoo, and PyRIT excel at *running* attacks. AdversaryPilot answers the harder questions they can't:
-
-<div class="features">
-  <div class="feature-card">
-    <span class="feature-icon">&#x1f3af;</span>
-    <h3>What should I try next?</h3>
-    <p>Thompson Sampling explores the most promising attack techniques while balancing exploitation and exploration.</p>
-  </div>
-  <div class="feature-card">
-    <span class="feature-icon">&#x1f50d;</span>
-    <h3>Which layer is weakest?</h3>
-    <p>Bayesian posterior analysis identifies the most vulnerable system layer with calibrated confidence intervals.</p>
-  </div>
-  <div class="feature-card">
-    <span class="feature-icon">&#x1f4ca;</span>
-    <h3>Are these results meaningful?</h3>
-    <p>Z-score calibration against HarmBench and JailbreakBench baselines - not raw percentages.</p>
-  </div>
-  <div class="feature-card">
-    <span class="feature-icon">&#x1f6e1;</span>
-    <h3>Am I meeting compliance?</h3>
-    <p>Automated mapping to OWASP LLM Top 10, NIST AI RMF, and EU AI Act with gap analysis.</p>
-  </div>
-</div>
-
 ## Key Capabilities
 
 <div class="features">
   <div class="feature-card">
     <h3>Bayesian Attack Planning</h3>
-    <p>Thompson Sampling with correlated arms and benchmark-calibrated priors. The planner learns from every test result and recommends increasingly targeted techniques.</p>
+    <p>Thompson Sampling with correlated arms and benchmark-calibrated priors. Learns from every test result and recommends increasingly targeted techniques.</p>
   </div>
   <div class="feature-card">
     <h3>70 MITRE ATLAS Techniques</h3>

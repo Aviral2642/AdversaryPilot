@@ -133,7 +133,7 @@ Every chain produced by AdversaryPilot includes a human-readable narrative suita
 
 These narratives are included in the HTML report under the Attack Graph tab.
 
-<img src="screenshots/attack-graph.png" alt="Force-directed attack graph visualization showing technique relationships and chain paths">
+<img src="{{ '/screenshots/attack-graph.png' | relative_url }}" alt="Force-directed attack graph visualization showing technique relationships and chain paths">
 
 ## How AdversaryPilot Sequences Attacks
 

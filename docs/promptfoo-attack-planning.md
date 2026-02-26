@@ -170,7 +170,7 @@ Every promptfoo test, once mapped to AdversaryPilot techniques, inherits complia
 
 After importing, the compliance dashboard shows exactly which OWASP LLM Top 10 controls are covered by your promptfoo tests and which still need attention. This transforms promptfoo output from "5 tests passed, 3 failed" into "we've covered LLM01, LLM06, and LLM09; gaps remain in LLM02, LLM03, LLM04, LLM05, LLM07, LLM08, and LLM10."
 
-<img src="screenshots/technique-details.png" alt="Technique details showing scores, results, and execution hooks">
+<img src="{{ '/screenshots/technique-details.png' | relative_url }}" alt="Technique details showing scores, results, and execution hooks">
 
 ## Step-by-Step Workflow: Promptfoo + AdversaryPilot
 

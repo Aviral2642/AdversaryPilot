@@ -154,9 +154,9 @@ Each ATLAS-mapped technique also cross-references compliance framework controls:
 
 This triple-mapping means a single red team campaign produces coverage metrics for all three frameworks simultaneously.
 
-<img src="screenshots/ATLAS-mapping.png" alt="MITRE ATLAS technique mapping showing cross-references for tested techniques">
+<img src="{{ '/screenshots/ATLAS-mapping.png' | relative_url }}" alt="MITRE ATLAS technique mapping showing cross-references for tested techniques">
 
-<img src="screenshots/compliance.png" alt="Compliance dashboard showing OWASP, NIST, and EU AI Act coverage gauges">
+<img src="{{ '/screenshots/compliance.png' | relative_url }}" alt="Compliance dashboard showing OWASP, NIST, and EU AI Act coverage gauges">
 
 ## Using AdversaryPilot as Your ATLAS Planner
 
