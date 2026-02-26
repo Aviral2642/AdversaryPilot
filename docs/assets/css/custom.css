@@ -349,6 +349,18 @@
   text-decoration: none;
 }
 
+/* --- Screenshots --- */
+
+img {
+  max-width: 420px !important;
+  width: 100% !important;
+  height: auto !important;
+  border: 1px solid var(--border-dim) !important;
+  border-radius: 8px !important;
+  display: block;
+  margin: 1.5rem 0;
+}
+
 /* --- Code Blocks --- */
 
 .quick-start-code {

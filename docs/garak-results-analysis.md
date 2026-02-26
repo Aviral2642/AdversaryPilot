@@ -134,7 +134,7 @@ Every garak probe, once mapped to an AdversaryPilot technique, inherits the tech
 
 The compliance dashboard shows which controls are now covered by garak results and which still have gaps that need testing through other tools or manual assessment.
 
-<img src="screenshots/executive-summary.png" alt="AdversaryPilot executive summary showing risk level and assessment quality" style="max-width: 100%; width: 600px; border: 1px solid rgba(0,240,255,0.15); border-radius: 8px;">
+<img src="screenshots/executive-summary.png" alt="AdversaryPilot executive summary showing risk level and assessment quality">
 
 ## Step-by-Step Workflow: Garak + AdversaryPilot
 

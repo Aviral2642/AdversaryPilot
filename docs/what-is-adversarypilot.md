@@ -93,7 +93,7 @@ The planner pipeline:
 2. **7-dimension scorer** evaluates compatibility, access fit, goal alignment, defense bypass likelihood, signal gain, cost, and detection risk
 3. **Thompson Sampling** overlays Bayesian posteriors to produce the final ranked recommendation
 
-<img src="screenshots/layer-analysis.png" alt="Attack surface layer analysis with Wilson confidence intervals and Z-score badges" style="max-width: 100%; width: 600px; border: 1px solid rgba(0,240,255,0.15); border-radius: 8px;">
+<img src="screenshots/layer-analysis.png" alt="Attack surface layer analysis with Wilson confidence intervals and Z-score badges">
 
 ## Getting Started
 
@@ -104,7 +104,7 @@ adversarypilot plan target.yaml
 
 Read the [AI Red Team Strategy guide]({{ '/ai-red-team-strategy/' | relative_url }}) to learn how to build a systematic red team campaign, or explore [attack sequencing]({{ '/adversarial-attack-sequencing/' | relative_url }}) to understand multi-stage attack planning.
 
-<img src="screenshots/raw-data.png" alt="Raw data JSON export for programmatic analysis" style="max-width: 100%; width: 600px; border: 1px solid rgba(0,240,255,0.15); border-radius: 8px;">
+<img src="screenshots/raw-data.png" alt="Raw data JSON export for programmatic analysis">
 
 ## Related Pages
 

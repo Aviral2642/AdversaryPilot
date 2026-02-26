@@ -91,7 +91,7 @@ A common blind spot in AI red teaming is testing only the LLM layer. Modern AI s
 
 AdversaryPilot's [70-technique catalog]({{ '/mitre-atlas-ai-red-teaming-planner/' | relative_url }}) covers all surfaces, and the planner explicitly tracks surface-level coverage to avoid blind spots.
 
-<img src="screenshots/heatmap.png" alt="Attack surface risk heatmap showing success rates across surfaces and goals" style="max-width: 100%; width: 600px; border: 1px solid rgba(0,240,255,0.15); border-radius: 8px;">
+<img src="screenshots/heatmap.png" alt="Attack surface risk heatmap showing success rates across surfaces and goals">
 
 ## Compliance-Driven Red Teaming
 
@@ -152,7 +152,7 @@ How do you know the planner's recommendations aren't artifacts of arbitrary weig
 
 If a small weight change dramatically reshuffles the technique ranking, the planner warns you. This ensures you can trust the recommendations.
 
-<img src="screenshots/statistics.png" alt="Sensitivity analysis showing evidence depth and statistical power" style="max-width: 100%; width: 600px; border: 1px solid rgba(0,240,255,0.15); border-radius: 8px;">
+<img src="screenshots/statistics.png" alt="Sensitivity analysis showing evidence depth and statistical power">
 
 ## Meta-Learning Across Campaigns
 
@@ -160,7 +160,7 @@ When you run multiple campaigns against similar targets, AdversaryPilot's meta-l
 
 This means your second assessment is smarter than your first.
 
-<img src="screenshots/belief-evolution.png" alt="Bayesian belief evolution showing posterior parameter trajectories over campaign steps" style="max-width: 100%; width: 600px; border: 1px solid rgba(0,240,255,0.15); border-radius: 8px;">
+<img src="screenshots/belief-evolution.png" alt="Bayesian belief evolution showing posterior parameter trajectories over campaign steps">
 
 ## Related Pages
 
